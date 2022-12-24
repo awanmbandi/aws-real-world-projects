@@ -15,9 +15,24 @@ ls /etc/apache2/sites-enabled
 ```
 sudo rm /etc/apache2/sites-enabled/000-default.conf
 ```
+
 - You can as well create the `000-default.conf` directly in the `Web Server` using any text editor like `VI` than downloading.
 ```
 sudo wget https://raw.githubusercontent.com/awanmbandi/aws-real-world-projects/main/webserver-apache-config/000-default.conf -P /etc/apache2/sites-enabled
+```
+
+## We Have to Enable Two Apache2 Related Modules Using `a2enmod` For The Proxy To Start Working 
+- Enable Module 1: `proxy`
+- Enable Module 2: `proxy_http`
+
+- Run the below command and once prompted to provide the module, type `proxy`
+```
+sudo a2enmod
+```
+
+- Run the below command and once prompted to provide the module, type `proxy_http`
+```
+sudo a2enmod
 ```
 
 
