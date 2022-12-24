@@ -6,10 +6,13 @@
 ### NOTE: 
 - Before Applying any change on the below `sites-available` config files, I'll advice you take a Backup for Recovery purpose 
 - Before running the below commands make sure to `EDIT` the `Load Balancer DNS` in the `Reverse Proxy File` `000-default.conf` with your `LoadBalancer DNS` 
+- You can as well create the `000-default.conf` directly in the `Web Server` using any text editor like `VI` than downloading.
 
 ls /etc/apache2
 ls /etc/apache2/sites-enabled
 
 sudo rm /etc/apache2/sites-enabled/000-default.conf
 sudo wget https://raw.githubusercontent.com/awanmbandi/aws-real-world-projects/main/webserver-apache-config/000-default.conf -P /etc/apache2/sites-enabled
+
+
 
