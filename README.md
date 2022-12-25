@@ -114,7 +114,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
 - Click `Create NAT gateway`
 
 ### C) Configure/Edit the Route Tables of `Webserver subnets`, `Appserver subnets` and `Database subnets` to Add the `Nat gateway` Configs
-### Update the `Webserver subnet` Route tables (2) with the following configs
+### C.1) Update the `Webserver subnet` Route tables (2) with the following configs
 
 1. Select the `Prod-Webserver-RT-1`
 - Click on Edit and `Add route`
@@ -126,6 +126,29 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
 - Destination: `0.0.0.0/0`
 - Target: Select `Prod-NAT-Gateway-2`
 
+### C.2) Update the `Appserver subnet` Route tables (2) with the following configs
+
+1. Select the `Prod-Appserver-RT-1`
+- Click on Edit and `Add route`
+- Destination: `0.0.0.0/0`
+- Target: Select `Prod-NAT-Gateway-1`
+
+2. Select the `Prod-Appserver-RT-2`
+- Click on Edit and `Add route`
+- Destination: `0.0.0.0/0`
+- Target: Select `Prod-NAT-Gateway-2`
+
+### C.3) Update the `Database subnet` Route tables (2) with the following configs
+
+1. Select the `Prod-Database-RT-1`
+- Click on Edit and `Add route`
+- Destination: `0.0.0.0/0`
+- Target: Select `Prod-NAT-Gateway-1`
+
+2. Select the `Prod-Database-RT-2`
+- Click on Edit and `Add route`
+- Destination: `0.0.0.0/0`
+- Target: Select `Prod-NAT-Gateway-2`
 
 
 
