@@ -51,20 +51,38 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
 - Availability Zone: `us-west-1c`
 
 ## Step 2: Create 2 Public Route Rable and 6 Private Route Tables (Because of NAT Redundancy Implementation)
-### A) NAT/ALB Public Subnet Route Table
-- Name: `Prod-NAT-ALB-Public-RT`
+- See AWS Doc: https://www.shorturl.at/HSU18
+
+### A) NAT/ALB Public Subnet 1 Route Table
+- Name: `Prod-NAT-ALB-Public-RT-1`
 - VPC: Select the `Prod-VPC`
 
-### B) Webserver Subnet Route Table
-- Name: `Prod-Webserver-RT`
+### B) NAT/ALB Public Subnet 2 Route Table
+- Name: `Prod-NAT-ALB-Public-RT-2`
 - VPC: Select the `Prod-VPC`
 
-### C) Appserver Subnet Table Table
-- Name: `Prod-Appserver-RT`
+### C) Webserver Subnet 1 Route Table
+- Name: `Prod-Webserver-RT-1`
 - VPC: Select the `Prod-VPC`
 
-### D) Database Subnet Route Table
-- Name: `Prod-Database-RT`
+### D) Webserver Subnet 2 Route Table
+- Name: `Prod-Webserver-RT-2`
+- VPC: Select the `Prod-VPC`
+
+### E) Appserver Subnet 1 Table Table
+- Name: `Prod-Appserver-RT-1`
+- VPC: Select the `Prod-VPC`
+
+### F) Appserver Subnet 2 Table Table
+- Name: `Prod-Appserver-RT-2`
+- VPC: Select the `Prod-VPC`
+
+### G) Database Subnet 1 Route Table
+- Name: `Prod-Database-RT-1`
+- VPC: Select the `Prod-VPC`
+
+### H) Database Subnet 2 Route Table
+- Name: `Prod-Database-RT-2`
 - VPC: Select the `Prod-VPC`
 
 ## Step 3: Associate All Above Route Tables With Their Respective Subnets
