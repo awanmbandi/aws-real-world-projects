@@ -86,10 +86,14 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
 - VPC: Select the `Prod-VPC`
 
 ## Step 3: Associate All Above Route Tables With Their Respective Subnets
-1. Associate `Prod-NAT-ALB-Public-RT` with `Prod-Webserver-Subnet-1` and `Prod-Webserver-Subnet-2`
-2. Associate `Prod-Webserver-RT` with `Prod-Webserver-Subnet-1` and `Prod-Webserver-Subnet-2`
-3. Associate `Prod-Appserver-RT` with `Prod-Appserver-Subnet-1` and `Prod-Appserver-Subnet-2`
-4. Associate `Prod-Database-RT` with `Prod-db-Subnet-1` and `Prod-db-Subnet-2`
+1. Associate `Prod-NAT-ALB-Public-RT-1` with `Prod-Webserver-Subnet-1` 
+2. Associate `Prod-NAT-ALB-Public-RT-2` with `Prod-Webserver-Subnet-2`
+3. Associate `Prod-Webserver-RT-1` with `Prod-Webserver-Subnet-1` 
+4. Associate `Prod-Webserver-RT-2` with `Prod-Webserver-Subnet-2`
+5. Associate `Prod-Appserver-RT-1` with `Prod-Appserver-Subnet-1` 
+6. Associate `Prod-Appserver-RT-2` with  `Prod-Appserver-Subnet-2`
+7. Associate `Prod-Database-RT-1` with `Prod-db-Subnet-1` 
+8. Associate `Prod-Database-RT-2` with `Prod-db-Subnet-2`
 
 ## Step 4: Create and Configure IGW and NAT Gateways 
 ### A) Create and Configure IGW to Expose The `NAT/ALB Subnet 1` and `NAT/ALB Subnet 2`
