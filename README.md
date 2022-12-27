@@ -155,6 +155,13 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
 - Target: Select `Prod-NAT-Gateway-2`
 
 ## STEP 5: Create Security Groups
+### Create the Bastion Host Security Group
+- Click on Create Security group
+    - Name: `Bastion-Host-Security-Group`
+    - Inbound: 
+        - Ports: `22`
+        - Source: Provide `Your IP or 0.0.0.0/0`
+
 ### Create the Frontend/External Load Balancer Security Group
 - Navigate to `Security groups`
 - Click on Create Security group
@@ -170,7 +177,9 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
     - Name: `Webservers-Security-Group`
     - Inbound: 
         - Ports: `80 and 443`
-        - Source: Provide the `Frontend-LB-Security-Group` ID
+            - Source: Provide the `Frontend-LB-Security-Group` ID
+        - Ports: `22`
+            - Source: `Bastion-Host-Security-Group` ID
 
 ### Create the Backend/Internal Load Balancer Security Group
 - Click on Create Security group
@@ -184,14 +193,18 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
     - Name: `Appservers-Security-Group`
     - Inbound: 
         - Ports: `80 and 443`
-        - Source: Provide the `Backend-LB-Security-Group` ID
+            - Source: Provide the `Backend-LB-Security-Group` ID
+        - Ports: `22`
+            - Source: `Bastion-Host-Security-Group` ID
 
 ### Create the Database Security Group
 - Click on Create Security group
     - Name: `Database-Security-Group`
     - Inbound: 
         - Ports: `3306`
-        - Source: Provide the `Appservers-Security-Group` ID
+            - Source: Provide the `Appservers-Security-Group` ID
+        - Ports: `3306`
+            - Source: `Bastion-Host-Security-Group` ID
 
 ## STEP 6: Create External/Frontend and Internal/Backend Load Balancers
 ### Create External/Frontend Load Balancer
@@ -254,6 +267,44 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
     
     - Click on `Create load balancer`
 
+## STEP : Create an S3 Bucket Environment To Upload The Automation and Database Configs
+- Navigate to `Amazon S3`
+- Click on `Create Bucket`
+    - Name: Use naming convention `prod-proxy-app-db-config-YOUR-LAST-NAME-and-DAY-OF-BIRTH`
+    - AWS Region: Select your project region `(California) us-west-1`
+    - Object Ownership: `ACLs disabled`
+    - Block Public Access settings for this bucket: `Enable` `Block all public access`
+    - Bucket Versioning: `Enable`
+    - Default encryption: `Enable`
+    - Click `CREATE BUCKET`
+
+## STEP : Create a Bastion Host VM For Remote Access ((SSH)) To Webservers, Appservers and MySQL Database
+- Navigate to Instance in EC2
+- Click on `Create Instance`
+    - Name: `Prod-Bastion-Host`
+    - AMI: `Ubuntu 18.04`
+    - Instance type: `t2.micro`
+    - Key pair name: Select/Create Key pair
+        - Name: `Prod-"YOUR_REGION"-Key`
+    - Network:
+        - VPC: `Prod-VPC`
+        - Subnet: Select either `Prod-NAT-ALB-Subnet-1` or `Prod-NAT-ALB-Subnet-2`
+        - Security Group: Select the `Bastion-Host-Security-Group`
+    - Click `LAUNCH INSTANCE`
+
+### Setup SSH Port Forwarding Between Your Local and Bastion Host To Point at The Web, App and DB Instance.
+- 
+
+### Create an AmazonS3ReadOnlyAccess For Your Web and App Servers
+- Navigate to IAM
+- Click on Roles and `Create Role`
+    - Select `EC2` 
+    - Click on `Next`
+    - Permissions policies: Assign `AmazonS3ReadOnlyAccess`
+    - Click on `Next` 
+    - Name: `EC2-AmazonS3ReadOnlyAccess`
+    - Click `CREATE`
+
 ## STEP 7: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
@@ -269,6 +320,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
             - Security groups (Firewalls): Select the `Webservers-Security-Group`
         
         - Expand `Advance details`
+            - IAM instance profile: Select `S3-AmazonS3ReadOnlyAccess` IAM Role
             - `NOTE:` Make sure to update the LoadBalancer DNS `INTERNAL_LOAD_BALANCER_DNS` in https://github.com/awanmbandi/aws-real-world-projects/blob/main/webserver-reverse-proxy-config/000-default.conf `before passing the below User Data`
             - User data: provide the user data in https://github.com/awanmbandi/aws-real-world-projects/blob/main/webserver-reverse-proxy-config/web-automation.sh
             - `NOTE:` Update the `webserver-reverse-proxy-config/000-default.conf` on GitHub before passing User Data
@@ -289,6 +341,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
             - Security groups (Firewalls): Select the `Appservers-Security-Group`
         
         - Expand `Advance details`
+            - IAM instance profile: Select `S3-AmazonS3ReadOnlyAccess` IAM Role
             - `NOTE:` Make sure to update the Database Configurations in https://github.com/awanmbandi/aws-real-world-projects/blob/main/appserver-database-config/wp-config.php with Yours, `before passing the below User Data`
             - User data: provide the user data in https://github.com/awanmbandi/aws-real-world-projects/blob/main/appserver-startup-script/app-automation.sh
             - `NOTE:` Update the Database Configuration file `main/appserver-database-config/wp-config.php` on GitHub before passing the User Data
@@ -385,7 +438,8 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
         - Master username: `admin`
         - Master password: For example `admin2022`
         - NOTE: Password must be at least 8 characters, Can't contain / , ', " and @
-        - DB instance class: `db.m5.large`
+        - DB instance class: Choose `Burstable classes`
+            - Select `db.t3.micro`
 
     - Storage:
         - Storage type: Select `General Purpose SSD (gp3)`

@@ -20,3 +20,21 @@ sudo a2enmod rewrite
 sudo a2enmod headers
 sudo service apache2 restart
 sudo service apache2 enable
+
+# Install AWSCLI
+sudo apt-get install awscli -y
+
+# Copy the Apache2 Proxy Config File From S3
+sudo rm /etc/apache2/sites-enabled/000-default.conf
+sudo aws s3 cp s3://prod-proxy-app-db-config-awan-23/webserver-reverse-proxy-config/000-default.conf /etc/apache2/sites-enabled/
+
+# Enable Apache2 Reverse Proxy
+sudo a2enmod proxy 
+sudo a2enmod proxy_http
+sudo systemctl restart apache2
+
+####################################################################################################################
+# Only "ENABLE" The Bellow Modules When You Do Not Have a Backend Load Balancer In Case Where You Have Multiple VMs#
+####################################################################################################################
+#sudo a2enmod proxy_balancer
+#sudo a2enmod lbmethod_byrequests
