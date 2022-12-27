@@ -360,11 +360,58 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
             - Click on `NEXT`
             - Click on `Create Auto Scaling Group`
 
-## STEP 9: Create Database (RDS)
+## STEP 9: Create a Database Subnet Group and Database Instance (RDS)
+### A) Create Databse Subnet Group
+- Navigate to the `RDS` Service
+- Click on `Subnet groups`
+    - Click `Create DB Subnet Group`
+    - Name: `prod-db-subnet-group`
+    - VPC: Select `Prod-VPC`
+    - Availability Zones: Select the two zones you used for this project. Example `us-west-1a` and `us-west-1c`
+    - Subnets: Select `Prod-db-Subnet-1` and `Prod-db-Subnet-2`
+    - Click on `CREATE`
 
+### B) Create a Database Instance
+- Navigate to the `RDS` Service
+- Click on `Databases` and `Create Database`
+    - Choose a database creation method: Select `Standard create`
+    - Engine type: `MySQL`
+    - Engine Version: Select the `latest`
+    - Templates: `Production`
+    - Deployment options: `Multi-AZ DB instance`
 
-            
+    - Databse Settings:
+        - DB instance identifier: `prod-database`
+        - Master username: `admin`
+        - Master password: For example `admin2022`
+        - NOTE: Password must be at least 8 characters, Can't contain / , ', " and @
+        - DB instance class: `db.m5.large`
 
+    - Storage:
+        - Storage type: Select `General Purpose SSD (gp3)`
+        - Allocated storage: `30`
+        - Storage autoscaling: `Enable`
+        - Maximum storage threshold: Default `1000`
+    
+    - Connectivity:
+        - Compute resource: Select `Don’t connect to an EC2 compute resource`
+        - Virtual private cloud (VPC): `Prod-VPC`
+        - DB Subnet group: Select your DB Subnet group `prod-db-subnet-group`
+        - Public access: `NO`
+            - NOTE: To remote Programatically manually, we'll have to setup a `bastion host`
+        - Database authentication: Select `Password authentication`
+    - Monitoring:
+        - Enhanced Monitoring: `Disable`
+
+    - Additional configuration: 
+        - Initial database name: `proddatabase`
+        - Backup: `Enable automated backups`
+        - Encryption: `Enable encryption`
+        - Maintenance: `Disable`
+        - Deletion protection: `Disable`
+    - Click `CREATE DATABASE`
+
+## STEP 10: Create a Route 53 Hosted Zone and Record For The Frontend Load Balancer Endpoint
 
 
 
