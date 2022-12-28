@@ -1,4 +1,5 @@
 ## Create a Database config file in the application servers 
+vi dbinfo.inc
 
 ## Copy and Past the Below Data in the file after updating
 ```bash
