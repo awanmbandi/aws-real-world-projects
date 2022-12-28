@@ -1,6 +1,14 @@
 ## STEP 1
 - Region `California`
-- Create Prod VPC
+- Create Prod VPC `USE The CREAT WIZARD` 
+    - Define `Number of Availability Zones (AZs)`
+    - Define `Number of public subnets`
+    - Define `Number of private subnets`
+    - Define `NAT gateways ($)`
+    - Define `Names`
+    - Define `IPv4 CIDR block`
+    - Define `VPC Endpoint`(OPTIONAL)
+
 - Create `4` Public Subnets and `4` Private Subnets
 - Route Tables: Create 
     - 2 Route Tables for `FrontEnd ALB`/`NAT Gateways` Subnets (1 Per Subnet)
