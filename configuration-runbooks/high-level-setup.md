@@ -1,6 +1,7 @@
 ## STEP 1
 - Region `California`
 - Create Prod VPC `USE The CREAT WIZARD` 
+    - Define: Resources to create `VPC and More`
     - Define `Number of Availability Zones (AZs)`
     - Define `Number of public subnets`
     - Define `Number of private subnets`
@@ -8,6 +9,7 @@
     - Define `Names`
     - Define `IPv4 CIDR block`
     - Define `VPC Endpoint`(OPTIONAL)
+    - DNS options: Make sure `Enable DNS resolution` is `Enabled`
 
 - Create `4` Public Subnets and `4` Private Subnets
 - Route Tables: Create 
