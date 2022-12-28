@@ -2,6 +2,7 @@
 - Region `California`
 - Create Prod VPC `USE The CREAT WIZARD` 
     - Define: Resources to create `VPC and More`
+    - Define: Name tag auto-generation: `Uncheck` and Give Names
     - Define `Number of Availability Zones (AZs)`
     - Define `Number of public subnets`
     - Define `Number of private subnets`
