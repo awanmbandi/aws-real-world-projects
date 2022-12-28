@@ -225,7 +225,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
             - VPC: Select `Prod-VPC`
             - Protocol version: `HTTP1`
             - Health checks: `HTTP`
-            - Health check path: `/`
+            - Health check path: `/wp-admin/install.php`
             - Click on `Next`
             - Click on `Create target group`
 
@@ -255,7 +255,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
             - VPC: Select `Prod-VPC`
             - Protocol version: `HTTP1`
             - Health checks: `HTTP`
-            - Health check path: `/`
+            - Health check path: `/wp-admin/install.php`
             - Click on `Next`
             - Click on `Create target group`
 
