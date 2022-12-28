@@ -92,3 +92,4 @@ mysql -u admin -h php-app-database.cee2jhm51ydc.us-west-1.rds.amazonaws.com -p
 ## Test Application Server Connection With Database 
 telnet YOUR_RDS_DATABASE_ENDPOINT 3306
 telnet php-app-database.cee2jhm51ydc.us-west-1.rds.amazonaws.com 3306
+
