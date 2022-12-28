@@ -38,6 +38,7 @@ telnet php-app-database.cee2jhm51ydc.us-west-1.rds.amazonaws.com 3306
 #########################################################################################################
 Path: /SamplePage.php
 
+
 ####################################################################################################################
 #UPDATE THE WEBSERVER APACHE2 PROXY CONFIG FILE: With the Backend External Load Balancer DNS WITH "/SamplePage.php"#
 ####################################################################################################################
@@ -48,7 +49,9 @@ Path: /SamplePage.php
 </VirtualHost>
 
 
-## Verify Data Was Stored In The Database
+####################################################################################################################
+## Verify Data Was Stored In The Database                                                                          #
+####################################################################################################################
 SHOW DATABASES;
 
 USE phpappdatabase;
