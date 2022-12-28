@@ -1,5 +1,5 @@
 # 👨🏼‍💻 Deploying a 3 Tier Mailing Web Application on AWS 👨🏼‍💻
-In this runbook, we will discuss/implement the a PHP app deployment with multi-tier architecture on AWS. We will be using the Amazon EC2 service on AWS for Linux server, Apache Web server and PHP. For the Mysql database, we will use the RDS service on AWS as a separate micro service and will be serving a seperate layer based on the architecture. We will connect the webserver to the app and the app with the database to achieve a multi-tier application architecture deployment. To engage this project, you need to have a registered AWS account and at this point, I assume that you already have one.
+In this runbook, we will implement the PHP Mailing deployment with multi-tier architecture on AWS. We will be using the Amazon EC2 service on AWS for Webservers and Appservers. For the Mysql database, we will use the RDS service. We'll also see how to connect the Webserver to the Appservers and the Appservers with the Database to achieve a multi-tier application architecture deployment.
 
 ## STEP 1: Create The Base Networking Infrastructure For NAT/ELB, Webservers, Appservers and Database
 ### A) Create The VPC Network
@@ -271,7 +271,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
     
     - Click on `Create load balancer`
 
-## STEP : Create an S3 Bucket Environment To Upload The Automation and Database Configs
+## STEP 7: Create an S3 Bucket Environment To Upload The Automation and Database Configs
 - Navigate to `Amazon S3`
 - Click on `Create Bucket`
     - Name: Use naming convention `prod-proxy-app-db-config-YOUR-LAST-NAME-and-DAY-OF-BIRTH`
@@ -282,7 +282,7 @@ In this runbook, we will discuss/implement the a PHP app deployment with multi-t
     - Default encryption: `Enable`
     - Click `CREATE BUCKET`
 
-## STEP : Create a Bastion Host VM For Remote Access ((SSH)) To Webservers, Appservers and MySQL Database
+## STEP 8: Create a Bastion Host VM For Remote Access ((SSH)) To Webservers, Appservers and MySQL Database
 - Navigate to Instance in EC2
 - Click on `Create Instance`
     - Name: `Prod-Bastion-Host`
@@ -330,7 +330,7 @@ Now run the above command to check added identities or Private keys
     - Name: `EC2-AmazonS3ReadOnlyAccess`
     - Click `CREATE`
 
-## STEP 7: Create Webservers and Apservers Launch Templates
+## STEP 9: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
     - Click on `Create Launch Configuration`
@@ -373,7 +373,7 @@ Now run the above command to check added identities or Private keys
             - Once changes have been made and user data passed 
             - Click on `Create launch template`
 
-## STEP 8: Create Webserver and Appserver Auto Scaling Groups
+## STEP 10: Create Webserver and Appserver Auto Scaling Groups
 ### A). Webserver Autocsaling Group
 - Navigate to `EC2/Auto Scaling`
     - Click on `Create Auto Scaling Group`
@@ -438,7 +438,7 @@ Now run the above command to check added identities or Private keys
             - Click on `NEXT`
             - Click on `Create Auto Scaling Group`
 
-## STEP 9: Create a Database Subnet Group and Database Instance (RDS)
+## STEP 11: Create a Database Subnet Group and Database Instance (RDS)
 ### A) Create Databse Subnet Group
 - Navigate to the `RDS` Service
 - Click on `Subnet groups`
@@ -490,7 +490,7 @@ Now run the above command to check added identities or Private keys
         - Deletion protection: `Disable`
     - Click `CREATE DATABASE`
 
-## STEP 10: Create a Route 53 Hosted Zone and Record For The Frontend Load Balancer Endpoint
+## STEP 12: Create a Route 53 Hosted Zone and Record For The Frontend Load Balancer Endpoint
 
 
 
