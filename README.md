@@ -1,4 +1,4 @@
-# 👨🏼‍💻 Deploying a 3 Tier H.A Web Application on AWS 👨🏼‍💻
+# 👨🏼‍💻 Deploying a 4 Tier H.A Web Application on AWS 👨🏼‍💻
 
 ## STEP 1: Create The Base Networking Infrastructure For NAT/ELB, Webservers, Appservers and Database
 ### A) Create The VPC Network
