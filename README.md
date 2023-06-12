@@ -371,30 +371,6 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
             - Select existing security group: `Bastion-Host-Security-Group`
     - Click `LAUNCH INSTANCE`
 
-### Setup SSH Port Forwarding Between Your Local and Bastion Host To Point at The Web, App and DB Instance.
-```exec ssh-agent bash``` 
-
-```eval 'ssh-agent -s'```
-
-```ssh-agent bash```
-
-#### ssh-add -L    
-- (Once you run this command it will tell you if you have added some identities to SSH agen or not. If not run the bellow command to add identity or private key) 
-```ssh-add -k "Absolute Path to your Private key file on your Local"```
-
-```ssh-add -L```
-Now run the above command to check added identities or Private keys 
-
-- Now we have to use this SSH Agent Identity to login to our bastion in the public subnet then we'll be able to login to our private server 
-
-#### ssh -A -i "private key" USER_NAME@HostNameORipAddress
-```ssh -A -i "private key" USER_NAME@HostNameORipAddress```
-- (-A stands for AGENT FORWARDING. And once you get into the instance in the Bastion host using the SSH AGENT Identity, when you try to SSH into the instance in the private subnet now, what SSH AGENT will do is. It will make use of the Identity in your local machine to access the server. Then you'll be authenticated) 
-
-#### ssh USER_NAME@IPAddress
-```ssh USER_NAME@"Private Instance IP Address"```
-- (Once you run this command you will be allowed into the server. That is SSH Agent port fording. It makes use of the locally stored Identity). 
-
 ### Create an IAM Role That Grants AmazonS3ReadOnlyAccess To Your Web and App Servers
 - Navigate to IAM
 - Click on Roles and `Create Role`
@@ -450,6 +426,64 @@ Now run the above command to check added identities or Private keys
             - User Script: Pass the userdata once you are done editing your s3 bucket/object URI
     - Click `LAUNCH INSTANCE`
 
+### STEP 9.3: `Login to your Bastion Host` and `Remote into the Appserver` to `Configure` the Environment
+1. Once you lock into the `Bastion`, Execute the Following commands to setup `SSH Agent Port Fowarding`
+2. Login to your `Prod-Appserver` using SSH Port Fowarding and Execute the following ccommands https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/appservers-startup-script/app-automation.sh
+
+### 1. Setup SSH Port Forwarding Between Your Local and Bastion Host To Point at The Web, App and DB Instance.
+```exec ssh-agent bash``` 
+
+```eval 'ssh-agent -s'```
+
+```ssh-agent bash```
+
+#### ssh-add -L    
+- (Once you run this command it will tell you if you have added some identities to SSH agen or not. If not run the bellow command to add identity or private key) 
+```ssh-add -k "Absolute Path to your Private key file on your Local"```
+
+```ssh-add -L```
+Now run the above command to check added identities or Private keys 
+
+- Now we have to use this SSH Agent Identity to login to our bastion in the public subnet then we'll be able to login to our private server 
+
+#### ssh -A -i "private key" USER_NAME@HostNameORipAddress
+```ssh -A -i "private key" USER_NAME@HostNameORipAddress```
+- (-A stands for AGENT FORWARDING. And once you get into the instance in the Bastion host using the SSH AGENT Identity, when you try to SSH into the instance in the private subnet now, what SSH AGENT will do is. It will make use of the Identity in your local machine to access the server. Then you'll be authenticated) 
+
+#### ssh USER_NAME@IPAddress
+```ssh USER_NAME@"Private Instance IP Address"```
+- (Once you run this command you will be allowed into the server. That is SSH Agent port fording. It makes use of the locally stored Identity). 
+
+#### 2. Configure Your Appserver Environment
+- Use the following Runbook: https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/appservers-startup-script/app-automation.sh
+- Once You're Done Configuring the Appserver Environment, Go Ahead and `Integrate App and Web with LoadBalancers`
+
+#### 3. Integrate the `Webserver and Appserver` Instance With Your `Frontend and Backend Load Balancer`
+##### REGISTER FRONTEND TARGET GROUP
+- Click on EC2, Click on `Target Groups`
+    - Click on `Frontend-LB-HTTP-TG`
+    - Click on `Registered Targets`
+        - Select the `Prod-Webserver`
+        - Click `Inlcude as pending below`
+        - Click `Register pending targets`
+
+##### REGISTER FRONTEND TARGET GROUP
+- Click on EC2, Click on `Target Groups`
+    - Click on `Backend-LB-HTTP-TG`
+    - Click on `Registered Targets`
+        - Select the `Prod-Appserver`
+        - Click `Inlcude as pending below`
+        - Click `Register pending targets`
+
+##### AFTER REGISTERING APP and WEB with LOAD BALANCERS 
+1. Go ahead and Test the Solution
+2. NOTE: You might need to give it some time to Provision
+
+
+## CONGRATULATIONS!!! CONGRATULATIONS!!! CONGRATULATIONS!!!
+
+
+# PART 2: EXTEND YOUR SOLUTION WITH HIGH AVAILABILITY WITH AUTO SCALING
 ## STEP 10: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
