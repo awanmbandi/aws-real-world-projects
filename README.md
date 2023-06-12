@@ -330,7 +330,7 @@ Now run the above command to check added identities or Private keys
 ```ssh USER_NAME@"Private Instance IP Address"```
 - (Once you run this command you will be allowed into the server. That is SSH Agent port fording. It makes use of the locally stored Identity). 
 
-### Create an AmazonS3ReadOnlyAccess For Your Web and App Servers
+### Create an IAM Role That Grants AmazonS3ReadOnlyAccess To Your Web and App Servers
 - Navigate to IAM
 - Click on Roles and `Create Role`
     - Select `EC2` 
