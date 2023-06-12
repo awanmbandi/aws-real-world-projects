@@ -305,7 +305,8 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
         - Master password: For example `admin12345`
         - NOTE: Password must be at least 8 characters, Can't contain / , ', " and @
         - DB instance class: Choose `Burstable classes`
-            - Select `db.t3.micro`
+        - Include previous generation classes: `Enable`
+            - Select `db.t2.micro`
 
     - Storage:
         - Storage type: Select `General Purpose SSD (gp3)`
