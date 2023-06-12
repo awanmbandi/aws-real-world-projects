@@ -6,7 +6,7 @@ sudo yum update -y
 
 #2. Install the PHP software using the amazon-linux-extras install command. 
 #This command installs multiple software packages and related dependencies at the same time.
-sudo amazon-linux-extras install php8.0 mariadb10.5
+sudo amazon-linux-extras install php8.0 mariadb10.5 -y
 
 #3. Install the Apache App server.
 sudo yum install -y httpd
