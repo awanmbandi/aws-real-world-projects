@@ -15,12 +15,12 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 ### B) Create The NAT/AL Subnet 1 and 2
 1. NAT/ALB Subnet 1
 - Name: `Prod-NAT-ALB-Subnet-1`
-- CidirBlock: `10.0.5.0`
+- CidirBlock: `10.0.5.0/28`
 - Availability Zone: `us-west-1a`
 
 2. NAT/ALB Subnet 2
 - Name: `Prod-NAT-ALB-Subnet-2`
-- CidirBlock: `10.0.10.0`
+- CidirBlock: `10.0.10.0/28`
 - Availability Zone: `us-west-1c`
 
 ### B) Create The Webserver Subnet 1 and 2
