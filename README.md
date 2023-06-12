@@ -345,7 +345,7 @@ Now run the above command to check added identities or Private keys
     - Switch by Clicking on `Create launch template`
         - Name: `Prod-Webservers-LT`
         - Template version description: `Prod-Webservers-LT Version 1`
-        - AMI: Select for `Ubuntu 18.04`
+        - AMI: Select for `Ubuntu 20.04`
         - Instance type: `t2.micro`
         - Key pair: Create a new key pair `california-keypair`
         - Network Settings:
