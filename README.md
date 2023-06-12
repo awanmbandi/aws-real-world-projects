@@ -294,7 +294,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 - Navigate to Instance in EC2
 - Click on `Create Instance`
     - Name: `Prod-Bastion-Host`
-    - AMI: `Ubuntu 18.04`
+    - AMI: `Ubuntu 20.04`
     - Instance type: `t2.micro`
     - Key pair name: Select/Create Key pair
         - Name: `Prod-"YOUR_REGION"-Key`
