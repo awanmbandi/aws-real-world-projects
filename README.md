@@ -142,7 +142,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 
 ### C) Configure/Edit the Route Tables of `Appserver subnets` and `Database subnets` to Add the `Nat gateway` Configs
 
-### C.1) Update the `Appserver subnet` Route tables (2) with the following configs
+### C.1) Update the `Appserver subnet` Route tables (1 and 2) with the following configs
 
 1. Select the `Prod-Appserver-RT-1`
 - Click on Edit and `Add route`
@@ -154,7 +154,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 - Destination: `0.0.0.0/0`
 - Target: Select `Prod-NAT-Gateway-2`
 
-### C.2) Update the `Database subnet` Route tables (2) with the following configs
+### C.2) Update the `Database subnet` Route tables (1 and 2) with the following configs
 
 1. Select the `Prod-Database-RT-1`
 - Click on Edit and `Add route`
