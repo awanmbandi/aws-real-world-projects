@@ -410,7 +410,45 @@ Now run the above command to check added identities or Private keys
 - Once we test and confirm that everything is working fine and the application is accessible, we're going create Golden AMIs from the APP and WEB server Infra
 - Once we have the Golden AMIs, we'll use that to implement H.A with Autoscaling
 
-### STEP 9.2: Create Webserver
+### STEP 9.2: Create Appserver Instance
+- Navigate to Instance in EC2
+- Click on `Launch Instance`
+    - Name: `Prod-Appserver`
+    - AMI: `Amazon Linux 2`
+    - Instance type: `t2.micro`
+    - Key pair name: `Select the same Key pair` as your `Bastion-Host` since we're using SSH Portfwarding
+        - Name: `Prod-"YOUR_REGION"-Key`
+    - Network:
+        - VPC: `Prod-VPC`
+        - Subnet: Select either `Prod-Appserver-Subnet-1` or `Prod-Appserver-Subnet-2`
+        - Auto-assign public IP: `Disable`
+        - Security Group: 
+            - Select existing security group: `Appservers-Security-Group`
+        - Click on Advance Configurations:
+            - IAM Instance Profile: `EC2-AmazonS3ReadOnlyAccess`
+    - Click `LAUNCH INSTANCE`
+
+### STEP 9.2: Create Webserver Instance
+- Update Userdata Script: https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/webservers-reverse-proxy-config/web-automation.sh
+    - Download or Create the file locally: `Update the S3 Bucket Object URI` of `000-default.conf` to yours
+- Navigate to Instance in EC2
+- Click on `Launch Instance`
+    - Name: `Prod-Webserver`
+    - AMI: `Amazon Linux 2`
+    - Instance type: `t2.micro`
+    - Key pair name: `Select the same Key pair` as your `Bastion-Host` since we're using SSH Portfwarding
+        - Name: `Prod-"YOUR_REGION"-Key`
+    - Network:
+        - VPC: `Prod-VPC`
+        - Subnet: Select either `Prod-Webserver-Subnet-1` or `Prod-Webserver-Subnet-2`
+        - Auto-assign public IP: `Enable`
+        - Security Group: 
+            - Select existing security group: `Webservers-Security-Group`
+        - Click on Advance Configurations:
+            - IAM Instance Profile: `EC2-AmazonS3ReadOnlyAccess`
+            - User Script: `Pass your updated user script` https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/webservers-reverse-proxy-config/web-automation.sh
+            - User Script: Pass the userdata once you are done editing your s3 bucket/object URI
+    - Click `LAUNCH INSTANCE`
 
 ## STEP 10: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
@@ -427,7 +465,7 @@ Now run the above command to check added identities or Private keys
             - Security groups (Firewalls): Select the `Webservers-Security-Group`
         
         - Expand `Advance details`
-            - IAM instance profile: Select `S3-AmazonS3ReadOnlyAccess` IAM Role
+            - IAM instance profile: Select `EC2-AmazonS3ReadOnlyAccess` IAM Role
             - `NOTE:` Make sure to update the LoadBalancer DNS `BACKEND_LOAD_BALANCER_DNS` in https://github.com/awanmbandi/aws-real-world-projects/blob/three-tier-mailing-app-project/webserver-reverse-proxy-config/000-default.conf `before passing the below User Data`
             - User data: provide the user data in https://github.com/awanmbandi/aws-real-world-projects/blob/three-tier-mailing-app-project/webserver-reverse-proxy-config/web-automation.sh
             - `NOTE:` Update the `webserver-reverse-proxy-config/000-default.conf` on GitHub before passing User Data
