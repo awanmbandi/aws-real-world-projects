@@ -221,16 +221,16 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 ## STEP 6: Create Frontend and Backend Load Balancers
 ### Create Frontend Load Balancer
 - Listeners and routing: 
-        - Click on `Create a target group` to create `HTTP` target group
-            - target type: select `instances`
-            - Target group name: `Frontend-LB-HTTP-TG`
-            - Protocol and Port: `HTTP`:`80`
-            - VPC: Select `Prod-VPC`
-            - Protocol version: `HTTP1`
-            - Health checks: `HTTP`
-            - Health check path: `/VenturaMailingApp.php`
-            - Click on `Next`
-            - Click on `Create target group`
+    - Click on `Create a target group` to create `HTTP` target group
+        - target type: select `instances`
+        - Target group name: `Frontend-LB-HTTP-TG`
+        - Protocol and Port: `HTTP`:`80`
+        - VPC: Select `Prod-VPC`
+        - Protocol version: `HTTP1`
+        - Health checks: `HTTP`
+        - Health check path: `/VenturaMailingApp.php`
+        - Click on `Next`
+        - Click on `Create target group`
  
 - Navigate to `EC2/Load Balancers` and Click on `Create Load Balancer`
     - Type: Choose `Application Load Balancer`
@@ -251,16 +251,16 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 
 ### Create Backend Load Balancer
 - Listeners and routing: 
-        - Click on `Create a target group` to create `HTTP` target group
-            - target type: select `instances`
-            - Target group name: `Backend-LB-HTTP-TG`
-            - Protocol and Port: `HTTP`:`80`
-            - VPC: Select `Prod-VPC`
-            - Protocol version: `HTTP1`
-            - Health checks: `HTTP`
-            - Health check path: `/VenturaMailingApp.php`
-            - Click on `Next`
-            - Click on `Create target group`
+    - Click on `Create a target group` to create `HTTP` target group
+        - target type: select `instances`
+        - Target group name: `Backend-LB-HTTP-TG`
+        - Protocol and Port: `HTTP`:`80`
+        - VPC: Select `Prod-VPC`
+        - Protocol version: `HTTP1`
+        - Health checks: `HTTP`
+        - Health check path: `/VenturaMailingApp.php`
+        - Click on `Next`
+        - Click on `Create target group`
             
 - Navigate to `EC2/Load Balancers` and Click on `Create Load Balancer`
     - Type: Choose `Application Load Balancer`
