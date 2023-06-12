@@ -279,7 +279,59 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
     
     - Click on `Create load balancer`
 
-## STEP 7: Create an S3 Bucket Environment To Upload The Automation and Database Configs
+## STEP 7: Create a Database Subnet Group and Database Instance (RDS)
+### A) Create Databse Subnet Group
+- Navigate to the `RDS` Service
+- Click on `Subnet groups`
+    - Click `Create DB Subnet Group`
+    - Name: `prod-db-subnet-group`
+    - VPC: Select `Prod-VPC`
+    - Availability Zones: Select the two zones you used for this project. Example `us-west-1a` and `us-west-1c`
+    - Subnets: Select `Prod-db-Subnet-1` and `Prod-db-Subnet-2`
+    - Click on `CREATE`
+
+### B) Create a Database Instance
+- Navigate to the `RDS` Service
+- Click on `Databases` and `Create Database`
+    - Choose a database creation method: Select `Standard create`
+    - Engine type: `MySQL`
+    - Engine Version: Select the `latest`
+    - Templates: `Production`
+    - Deployment options: `Multi-AZ DB instance`
+
+    - Databse Settings:
+        - DB instance identifier: `prod-database`
+        - Master username: `admin`
+        - Master password: For example `admin2022`
+        - NOTE: Password must be at least 8 characters, Can't contain / , ', " and @
+        - DB instance class: Choose `Burstable classes`
+            - Select `db.t3.micro`
+
+    - Storage:
+        - Storage type: Select `General Purpose SSD (gp3)`
+        - Allocated storage: `30`
+        - Storage autoscaling: `Enable`
+        - Maximum storage threshold: Default `1000`
+    
+    - Connectivity:
+        - Compute resource: Select `Don’t connect to an EC2 compute resource`
+        - Virtual private cloud (VPC): `Prod-VPC`
+        - DB Subnet group: Select your DB Subnet group `prod-db-subnet-group`
+        - Public access: `NO`
+            - NOTE: To remote Programatically manually, we'll have to setup a `bastion host`
+        - Database authentication: Select `Password authentication`
+    - Monitoring:
+        - Enhanced Monitoring: `Disable`
+
+    - Additional configuration: 
+        - Initial database name: `proddatabase`
+        - Backup: `Enable automated backups`
+        - Encryption: `Enable encryption`
+        - Maintenance: `Disable`
+        - Deletion protection: `Disable`
+    - Click `CREATE DATABASE`
+
+## STEP 8: Create an S3 Bucket Environment To Upload The Automation and Database Configs
 - Navigate to `Amazon S3`
 - Click on `Create Bucket`
     - Name: Use naming convention `prod-proxy-app-db-config-YOUR-LAST-NAME-and-MONTH-OF-BIRTH`
@@ -290,7 +342,19 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
     - Default encryption: `Enable`
     - Click `CREATE BUCKET`
 
-## STEP 8: Create a Bastion Host VM For Remote Access ((SSH)) To Webservers, Appservers and MySQL Database
+- Navigate to the GitHub Project Repository, Download the project App Stack and Upload it to the Bucket
+    - Click Here: https://github.com/awanmbandi/aws-real-world-projects
+        - Make sure you're on `four-tier-mailing-app-project` branch
+        - Click on the `ZIP file` name: `app-db-configs.zip`
+        - Click `View Raw` or `Download` to download the application configs to your local
+    - Once it get's downloaded on your local
+        - `UNZIP` the File
+        - Open your `VSCODE, ATOM` or any other Text/Code Editor of your choice and make the following changes
+            - Update the `dbinfo.inc` with your specific `Database Configurations`
+            - Update the `000-default.conf` with your specific `Backend Load Balancer DNS/VenturaMailingApp.php`
+        - Upload: All `3 files` into your `s3` bucket
+
+## STEP 9: Create a Bastion Host VM For Remote Access ((SSH)) To Webservers, Appservers and MySQL Database
 - Navigate to Instance in EC2
 - Click on `Create Instance`
     - Name: `Prod-Bastion-Host`
@@ -340,12 +404,14 @@ Now run the above command to check added identities or Private keys
     - Name: `EC2-AmazonS3ReadOnlyAccess`
     - Click `CREATE`
 
-## STEP 8.1 (NOTE): 
+## STEP 9.1 (NOTE): 
 - We're going to create a single ``WEBSERVER`` and ``APPSERVER`` to test the app deployment. 
 - Once we test and confirm that everything is working fine and the application is accessible, we're going create Golden AMIs from the APP and WEB server Infra
 - Once we have the Golden AMIs, we'll use that to implement H.A with Autoscaling
 
-## STEP 9: Create Webservers and Apservers Launch Templates
+### STEP 9.2: Create Webserver
+
+## STEP 10: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
     - Click on `Create Launch Configuration`
@@ -388,7 +454,7 @@ Now run the above command to check added identities or Private keys
             - Once changes have been made and user data passed 
             - Click on `Create launch template`
 
-## STEP 10: Create Webserver and Appserver Auto Scaling Groups
+## STEP 11: Create Webserver and Appserver Auto Scaling Groups
 ### A). Webserver Autocsaling Group
 - Navigate to `EC2/Auto Scaling`
     - Click on `Create Auto Scaling Group`
@@ -452,58 +518,6 @@ Now run the above command to check added identities or Private keys
             - Click on `NEXT`
             - Click on `NEXT`
             - Click on `Create Auto Scaling Group`
-
-## STEP 11: Create a Database Subnet Group and Database Instance (RDS)
-### A) Create Databse Subnet Group
-- Navigate to the `RDS` Service
-- Click on `Subnet groups`
-    - Click `Create DB Subnet Group`
-    - Name: `prod-db-subnet-group`
-    - VPC: Select `Prod-VPC`
-    - Availability Zones: Select the two zones you used for this project. Example `us-west-1a` and `us-west-1c`
-    - Subnets: Select `Prod-db-Subnet-1` and `Prod-db-Subnet-2`
-    - Click on `CREATE`
-
-### B) Create a Database Instance
-- Navigate to the `RDS` Service
-- Click on `Databases` and `Create Database`
-    - Choose a database creation method: Select `Standard create`
-    - Engine type: `MySQL`
-    - Engine Version: Select the `latest`
-    - Templates: `Production`
-    - Deployment options: `Multi-AZ DB instance`
-
-    - Databse Settings:
-        - DB instance identifier: `prod-database`
-        - Master username: `admin`
-        - Master password: For example `admin2022`
-        - NOTE: Password must be at least 8 characters, Can't contain / , ', " and @
-        - DB instance class: Choose `Burstable classes`
-            - Select `db.t3.micro`
-
-    - Storage:
-        - Storage type: Select `General Purpose SSD (gp3)`
-        - Allocated storage: `30`
-        - Storage autoscaling: `Enable`
-        - Maximum storage threshold: Default `1000`
-    
-    - Connectivity:
-        - Compute resource: Select `Don’t connect to an EC2 compute resource`
-        - Virtual private cloud (VPC): `Prod-VPC`
-        - DB Subnet group: Select your DB Subnet group `prod-db-subnet-group`
-        - Public access: `NO`
-            - NOTE: To remote Programatically manually, we'll have to setup a `bastion host`
-        - Database authentication: Select `Password authentication`
-    - Monitoring:
-        - Enhanced Monitoring: `Disable`
-
-    - Additional configuration: 
-        - Initial database name: `proddatabase`
-        - Backup: `Enable automated backups`
-        - Encryption: `Enable encryption`
-        - Maintenance: `Disable`
-        - Deletion protection: `Disable`
-    - Click `CREATE DATABASE`
 
 ## STEP 12: Create a Route 53 Hosted Zone and Record For The Frontend Load Balancer Endpoint
 
