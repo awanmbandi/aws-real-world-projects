@@ -302,7 +302,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
     - Databse Settings:
         - DB instance identifier: `prod-database`
         - Master username: `admin`
-        - Master password: For example `admin2022`
+        - Master password: For example `admin12345`
         - NOTE: Password must be at least 8 characters, Can't contain / , ', " and @
         - DB instance class: Choose `Burstable classes`
             - Select `db.t3.micro`
