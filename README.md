@@ -491,6 +491,33 @@ Now run the above command to check added identities or Private keys
 
 
 ## PART 2: EXTEND YOUR SOLUTION WITH HIGH AVAILABILITY WITH AUTO SCALING
+## STEP 10: Create Webserver and Appserver Golden AMIs
+### 10.1: Create Webserver Golden AMI
+- Navigate to the EC2 Console
+- Select your `Prod-Webserver` instance
+- Click on `Actions` >> Select `Image and Template`
+    - Click `Create Image`
+        - Name: `PHP-Webserver-Golden-AMI`
+        - Description: `PHP-Webserver-Golden-AMI`
+    - Click on `CREATE`
+
+### 10.2: Create Appserver Golden AMI
+- Navigate to the EC2 Console
+- Select your `Prod-Appserver` instance
+- Click on `Actions` >> Select `Image and Template`
+    - Click `Create Image`
+        - Name: `PHP-Appserver-Golden-AMI`
+        - Description: `PHP-Appserver-Golden-AMI`
+    - Click on `CREATE`
+
+### 10.3: Verify AMI Creation
+- Still on the EC2 Console
+- Navigate to `Images`
+- Click on `AMIs`
+    - Update Webserver AMI name: `PHP-Webserver-Golden-AMI`
+    - Update Appserver AMI name: `PHP-Appserver-Golden-AMI`
+    - Verify Status: `Available`
+
 ## STEP 10: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
@@ -498,7 +525,7 @@ Now run the above command to check added identities or Private keys
     - Switch by Clicking on `Create launch template`
         - Name: `Prod-Webservers-LT`
         - Template version description: `Prod-Webservers-LT Version 1`
-        - AMI: Select for `Ubuntu 20.04`
+        - My AMI: Select for `PHP-Webserver-Golden-AMI`
         - Instance type: `t2.micro`
         - Key pair: Create a new key pair `california-keypair`
         - Network Settings:
@@ -507,6 +534,8 @@ Now run the above command to check added identities or Private keys
         
         - Expand `Advance details`
             - IAM instance profile: Select `EC2-AmazonS3ReadOnlyAccess` IAM Role
+            - Auto-assign public IP: `ENABLE`
+            - Auto-assign public IP: `ENABLE`
             - `NOTE:` Make sure to update the LoadBalancer DNS `BACKEND_LOAD_BALANCER_DNS` in https://github.com/awanmbandi/aws-real-world-projects/blob/three-tier-mailing-app-project/webserver-reverse-proxy-config/000-default.conf `before passing the below User Data`
             - User data: provide the user data in https://github.com/awanmbandi/aws-real-world-projects/blob/three-tier-mailing-app-project/webserver-reverse-proxy-config/web-automation.sh
             - `NOTE:` Update the `webserver-reverse-proxy-config/000-default.conf` on GitHub before passing User Data
@@ -519,7 +548,7 @@ Now run the above command to check added identities or Private keys
     - Switch by Clicking on `Create launch template`
         - Name: `Prod-Appservers-LT`
         - Template version description: `Prod-Appservers-LT Version 1`
-        - AMI: Select for `Amazon Linux 2`
+        - My AMI: Select `PHP-Appserver-Golden-AMI`
         - Instance type: `t2.micro`
         - Key pair: Create a new key pair `california-keypair`
         - Network Settings:
@@ -527,7 +556,7 @@ Now run the above command to check added identities or Private keys
             - Security groups (Firewalls): Select the `Appservers-Security-Group`
         
         - Expand `Advance details`
-            - IAM instance profile: Select `S3-AmazonS3ReadOnlyAccess` IAM Role
+            - IAM instance profile: Select `EC2-AmazonS3ReadOnlyAccess` IAM Role
             - `NOTE:` Make sure to update the Database Configurations in https://github.com/awanmbandi/aws-real-world-projects/blob/main/appserver-database-config/wp-config.php with Yours, `before passing the below User Data`
             - User data: provide the user data in https://github.com/awanmbandi/aws-real-world-projects/blob/main/appserver-startup-script/app-automation.sh
             - `NOTE:` Update the Database Configuration file `main/appserver-database-config/wp-config.php` on GitHub before passing the User Data
