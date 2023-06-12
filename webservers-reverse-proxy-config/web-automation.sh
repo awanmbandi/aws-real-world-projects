@@ -26,7 +26,7 @@ sudo apt-get install awscli -y
 
 # Copy the Apache2 Proxy Config File From S3
 sudo rm /etc/apache2/sites-available/000-default.conf
-sudo aws s3 cp s3://prod-proxy-app-db-config-awan-23/webserver-reverse-proxy-config/000-default.conf /etc/apache2/sites-available/
+sudo aws s3 cp s3://prod-proxy-app-db-config-aak-10/000-default.conf /etc/apache2/sites-available/
 
 # Enable Apache2 Reverse Proxy
 sudo a2enmod proxy 
