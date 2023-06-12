@@ -1,5 +1,5 @@
 #!/bin/bash
-# Install and Setup Apache2, PHP and MySQL Client 
+# Install and Setup Apache2, PHP and MySQL Client
 #1. Get the latest bug fixes and security updates by updating the software on your EC2 instance. 
 sudo yum update -y
 
