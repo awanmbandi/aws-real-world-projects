@@ -325,7 +325,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
         - Enhanced Monitoring: `Disable`
 
     - Additional configuration: 
-        - Initial database name: `proddatabase`
+        - Initial database name: `phpappdatabase`
         - Backup: `Enable automated backups`
         - Encryption: `Enable encryption`
         - Maintenance: `Disable`
