@@ -434,7 +434,7 @@ Now run the above command to check added identities or Private keys
 - Navigate to Instance in EC2
 - Click on `Launch Instance`
     - Name: `Prod-Webserver`
-    - AMI: `Amazon Linux 2`
+    - AMI: `Ubuntu 20.04`
     - Instance type: `t2.micro`
     - Key pair name: `Select the same Key pair` as your `Bastion-Host` since we're using SSH Portfwarding
         - Name: `Prod-"YOUR_REGION"-Key`
