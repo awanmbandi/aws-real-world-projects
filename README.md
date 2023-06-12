@@ -301,6 +301,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
     - Network:
         - VPC: `Prod-VPC`
         - Subnet: Select either `Prod-NAT-ALB-Subnet-1` or `Prod-NAT-ALB-Subnet-2`
+        - Auto-assign public IP: `Enable`
         - Security Group: Select the `Bastion-Host-Security-Group`
     - Click `LAUNCH INSTANCE`
 
