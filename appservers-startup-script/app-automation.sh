@@ -52,9 +52,11 @@ mkdir inc
 cd inc
 
 #2. Create a new file in the ``inc`` directory named ``dbinfo.inc``, and then edit the file by calling ``vi`` (or any other editor of your choice).
-vi dbinfo.inc
+aws s3 cp s3://prod-proxy-app-db-config-aak-10/dbinfo.inc .
 
-#3. Add the following contents to the dbinfo.inc file. Here, db_instance_endpoint is your DB instance endpoint,.... 
+#3. (OPTIONAL!!!) If you did not copy fro your s3 Bucket.
+#3. (OPTIONAL!!!) If you did not copy fro your s3 Bucket.
+#3. (OPTIONAL!!!) If you did not copy fro your s3 Bucket. Add the following contents to the dbinfo.inc file. Here, db_instance_endpoint is your DB instance endpoint,.... 
 #   without the port, and master password is the master password for your DB instance
 ```bash
 <?php
@@ -69,6 +71,7 @@ define('DB_DATABASE', 'sample');
 
 #4. Save and close the ``dbinfo.inc`` file.
 
+#5. (CONTINUE!!) FROM HERE
 #5. Change the directory to /var/www/html
 cd /var/www/html
 
