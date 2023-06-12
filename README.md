@@ -282,7 +282,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 ## STEP 7: Create an S3 Bucket Environment To Upload The Automation and Database Configs
 - Navigate to `Amazon S3`
 - Click on `Create Bucket`
-    - Name: Use naming convention `prod-proxy-app-db-config-YOUR-LAST-NAME-and-DAY-OF-BIRTH`
+    - Name: Use naming convention `prod-proxy-app-db-config-YOUR-LAST-NAME-and-MONTH-OF-BIRTH`
     - AWS Region: Select your project region `(California) us-west-1`
     - Object Ownership: `ACLs disabled`
     - Block Public Access settings for this bucket: `Enable` `Block all public access`
