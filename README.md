@@ -130,11 +130,13 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 ### B) Create and Configure The NAT Gateways to point at the App and Database Tiers/Subnets
 1. Create the `First NAT Gateway`
 - Name: `Prod-NAT-Gateway-1`
+- Subnet: Select `Prod-NAT-ALB-Subnet-1`
 - Elastic IP: Clcik `Allocate Elastic IP`
 - Click `Create NAT gateway`
 
 2. Create the `Second NAT Gateway`
 - Name: `Prod-NAT-Gateway-2`
+- Subnet: Select `Prod-NAT-ALB-Subnet-2`
 - Elastic IP: Clcik `Allocate Elastic IP`
 - Click `Create NAT gateway`
 
