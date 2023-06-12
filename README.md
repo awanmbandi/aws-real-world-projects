@@ -340,6 +340,11 @@ Now run the above command to check added identities or Private keys
     - Name: `EC2-AmazonS3ReadOnlyAccess`
     - Click `CREATE`
 
+## STEP 8.1 (NOTE): 
+- We're going to create a single ``WEBSERVER`` and ``APPSERVER`` to test the app deployment. 
+- Once we test and confirm that everything is working fine and the application is accessible, we're going create Golden AMIs from the APP and WEB server Infra
+- Once we have the Golden AMIs, we'll use that to implement H.A with Autoscaling
+
 ## STEP 9: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
