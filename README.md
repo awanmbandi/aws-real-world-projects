@@ -433,7 +433,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 ### 1. Setup SSH Port Forwarding Between Your Local and Bastion Host To Point at The Web, App and DB Instance.
 ```exec ssh-agent bash``` 
 
-```eval 'ssh-agent -s'```
+``` eval 'ssh-agent -s' ```
 
 ```ssh-agent bash```
 
