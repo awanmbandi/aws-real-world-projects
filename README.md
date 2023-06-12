@@ -127,7 +127,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 - Target: Select the `Prod-VPC-IGW`
 - `SAVE`
 
-### B) Create and Configure The NAT Gateways to point at the Web, App and Database Tiers/Subnets
+### B) Create and Configure The NAT Gateways to point at the App and Database Tiers/Subnets
 1. Create the `First NAT Gateway`
 - Name: `Prod-NAT-Gateway-1`
 - Elastic IP: Clcik `Allocate Elastic IP`
