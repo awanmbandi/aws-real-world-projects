@@ -220,16 +220,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
 
 ## STEP 6: Create Frontend and Backend Load Balancers
 ### Create Frontend Load Balancer
-- Navigate to `EC2/Load Balancers` and Click on `Create Load Balancer`
-    - Type: Choose `Application Load Balancer`
-    - Load balancer name: `Prod-Frontend-LB`
-    - Scheme: `Internet-facing`
-    -  IP address type: `IPv4`
-    - Network mapping:
-        - VPC: Select `Prod-VPC`
-        - Mappings: Select the `Prod-NAT-ALB-Subnet-1` and `Prod-NAT-ALB-Subnet-2` frontend subnets
-    - Security groups: Select the `Frontend-LB-Security-Group`
-    - Listeners and routing: 
+- Listeners and routing: 
         - Click on `Create a target group` to create `HTTP` target group
             - target type: select `instances`
             - Target group name: `Frontend-LB-HTTP-TG`
@@ -240,8 +231,17 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
             - Health check path: `/VenturaMailingApp.php`
             - Click on `Next`
             - Click on `Create target group`
-
-    - `NOTE:` Navigate back to the page where you're creating the `LoadBalancer` and Refresh (Not The Whole Page)
+ 
+- Navigate to `EC2/Load Balancers` and Click on `Create Load Balancer`
+    - Type: Choose `Application Load Balancer`
+    - Load balancer name: `Prod-Frontend-LB`
+    - Scheme: `Internet-facing`
+    -  IP address type: `IPv4`
+    - Network mapping:
+        - VPC: Select `Prod-VPC`
+        - Mappings: Select the `Prod-NAT-ALB-Subnet-1` and `Prod-NAT-ALB-Subnet-2` frontend subnets
+    - Security groups: Select the `Frontend-LB-Security-Group`
+    
     - Listeners and routing: 
         - Protocol: `HTTP`
         - Listener `HTTP:80`
@@ -250,16 +250,7 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
     - Click on `Create load balancer`
 
 ### Create Backend Load Balancer
-- Navigate to `EC2/Load Balancers` and Click on `Create Load Balancer`
-    - Type: Choose `Application Load Balancer`
-    - Load balancer name: `Prod-Backend-LB`
-    - Scheme: `Internet-facing`
-    -  IP address type: `IPv4`
-    - Network mapping:
-        - VPC: Select `Prod-VPC`
-        - Mappings: Select the `Prod-Webserver-Subnet-1` and `Prod-Webserver-Subnet-2` Webserver/Provate subnets
-    - Security groups: Select the `Backend-LB-Security-Group`
-    - Listeners and routing: 
+- Listeners and routing: 
         - Click on `Create a target group` to create `HTTP` target group
             - target type: select `instances`
             - Target group name: `Backend-LB-HTTP-TG`
@@ -270,8 +261,17 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
             - Health check path: `/VenturaMailingApp.php`
             - Click on `Next`
             - Click on `Create target group`
+            
+- Navigate to `EC2/Load Balancers` and Click on `Create Load Balancer`
+    - Type: Choose `Application Load Balancer`
+    - Load balancer name: `Prod-Backend-LB`
+    - Scheme: `Internet-facing`
+    -  IP address type: `IPv4`
+    - Network mapping:
+        - VPC: Select `Prod-VPC`
+        - Mappings: Select the `Prod-Webserver-Subnet-1` and `Prod-Webserver-Subnet-2` Webserver/Provate subnets
+    - Security groups: Select the `Backend-LB-Security-Group`
 
-    - `NOTE:` Navigate back to the page where you're creating the `LoadBalancer` and Refresh (Not The Whole Page)
     - Listeners and routing: 
         - Protocol: `HTTP`
         - Listener `HTTP:80`
