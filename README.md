@@ -402,6 +402,12 @@ In this runbook, we will implement the PHP Mailing deployment with multi-tier ar
             - Select existing security group: `Appservers-Security-Group`
         - Click on Advance Configurations:
             - IAM Instance Profile: `EC2-AmazonS3ReadOnlyAccess`
+            - User Script: 
+                - Go to: https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/appservers-startup-scripts/app-automation.sh
+                - Update: Update the `S3 Bucket/Object URI`
+                - Update: Update the `S3 Bucket/Object URI`
+            - Userdata: `Pass your updated userdata script to the Appserver EC2` https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/appservers-startup-scripts/app-automation.sh
+            - User Script: Pass the userdata once you are done editing your s3 bucket/object URI
     - Click `LAUNCH INSTANCE`
 
 ### STEP 9.2: Create Webserver Instance
