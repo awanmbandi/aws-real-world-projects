@@ -33,8 +33,10 @@ find /var/www -type f -exec sudo chmod 0664 {} \;
 mkdir /var/www/inc
 
 #10. Create a new file in the ``inc`` directory named ``dbinfo.inc``
+# UPDATE S3 BUCKET/OBJECT NAME
 aws s3 cp s3://prod-proxy-app-db-config-aak-10/dbinfo.inc /var/www/inc
 
 #11. Create a new file in the ``html`` directory named VenturaMailingApp.php, 
+# UPDATE S3 BUCKET/OBJECT NAME
 aws s3 cp s3://prod-proxy-app-db-config-aak-10/VenturaMailingApp.php /var/www/html
 

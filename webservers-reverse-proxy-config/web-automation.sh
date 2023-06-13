@@ -25,6 +25,7 @@ sudo service apache2 enable
 sudo apt-get install awscli -y
 
 # Copy the Apache2 Proxy Config File From S3
+# UPDATE S3 BUCKET/OBJECT NAME
 sudo rm /etc/apache2/sites-available/000-default.conf
 sudo aws s3 cp s3://prod-proxy-app-db-config-aak-10/000-default.conf /etc/apache2/sites-available/
 
