@@ -627,12 +627,128 @@ Now run the above command to check added identities or Private keys
             - Click on `NEXT`
             - Click on `NEXT`
             - Click on `Create Auto Scaling Group`
+    
+    - TEST TO MAKE SURE APPLICATION IS ACCESSIBLE
 
-## STEP 12: Create a Route 53 Hosted Zone and Record For The Frontend Load Balancer Endpoint
+## Integrate Route53 DNS
+- Navigate to the Route 53 service 
+- Either `Register a Domain` if you don't have one or `Use and Esisting Domain`
+- Click on `Hosted Zones`
+- Click on `Your Domain Hosted Zone`
+    - Click `Create Record`
+        - Name: `PHP-Webapp-DNS-Record`
+        - Type: `CNAME` Domain Record
+        - Subdomain: `www`
+        - Value: Provide `Prod-Frontend-LB` DNS
+        - Routing policy: `Simple Routing`
+    - `CREATE RECORD`
 
+    - Give Rout53 between 2-4 Minutes for it to Publish The Record Configs
+    - RUN A TEST: Open your browser `http://www.jjtechphp-fourtier-webapplication.com/VenturaMailingApp.php`
 
+### Create Route 53 Application Health Check
+- Navigate to the Route 53 service 
+- Click on `Health Checks`
+- Click `Create Health Check`
+    - Name: `Prod-Webapp-HC`
+    - What to monitor: `Endpoint`
+    - Specify endpoint by: `Domain Name`
+    - Protocol: `HTTP`
+    - Port: `80`
+    - Path /: `VenturaMailingApp.php`
+    - Create alarm: `yes`
+        - Send notification to: `New SNS topic`
+        - Topic name: `PHP-Webapp-SNS-Topic`
+        - Recipient email addresses: `your-email@hosted-provider.com`
+        - NOTE: `YOU HAVE TO ACCEPT THE SNS EMAIL SUBSCRIPTION REQUEST THAT WILL BE SENT TO YOUR EMAIL`
+    - `CREATE`
 
+- Refresh `Health Check Console` to Confirm `Healthy State`
 
+## ADD SOME DATA INTO THE APPLICATION FROM THE APP 
+1. Navigate to: `www.jjtechphp-fourtier-webapplication.com/VenturaMailingApp.php`
+- Add `5 Employee Entries` and Example Addresses
 
+- Verify that these Entries are stored in the Database `phpappdatabase` Database Instance
+### Coonect to the App MySQL Database Instance
+1. `Login to the Database` Using the `Bastion Host`
+- Login to bastion and install mysql client 
+```
+sudo apt update
+sudo apt install mysql-server -y
+```
+- Once you install the MySQL client go ahead and connect to the database using the below command. 
+- NOTE: Once you run the command it'll request you provide your DB Password then it'll log you in after it validates the password is correct
+```
+mysql -h YOUR_DATABASE_ENDPOINT -u admin -p
+```
+- You're now in the database, you can now run the below command to show all databases, and you can verify the result by visiting the "Databases" tab in Cloud SQL. 
+```
+SHOW DATABASES;
+```
+- Set Database as default 
+```
+USE phpappdatabase;
+```
+- List all TABLES in the `phpappdatabase` Database
+```
+SHOW TABLES;
+```
+- Show The Data In The `EMPLOYEES` Table in the `phpappdatabase` Database 
+```
+SELECT * FROM EMPLOYEES;
+```
 
+### Test Your Mult-AZ Databse Deployment By Failing Over
+- Navigate back to the console while you're still logged into the Database 
+- Select the App Database Instance
+- Click on `Actions`
+- Click on `REBOOT`
 
+- `CONFIRM THAT THE APPLICATION IS STILL ACCESSIBLE` and
+- `That you are still logged into the Database from your Terminal`
+
+## CONGRATULATIONS!! CONGRATULATIONS!!
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+## Certificate Manager SSL/TLS Certificate Integration
+- Navigate to the `Certificate Manager` Service
+- Region: Confim you are in the same Region as your workloads
+- Click `Request a Certificate`
+- Certificate type: `Request a public certificate`
+- Click `Next`
+    - Fully qualified domain name: `Provide Your Domain From Rout53` Example: `www.jjtechphp-fourtier-webapplication.com`
+    - Click `REQUEST`
+
+- Give it a few Minutes for the Certificate Request to Complete
+- `Refresh` the CM Console
