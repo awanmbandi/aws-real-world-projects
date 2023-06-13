@@ -1,5 +1,5 @@
 # 👨🏼‍💻 Deploying a 4 Tier Mailing Web Application on AWS 👨🏼‍💻
-![4TierAppArchitecture!](https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/prod-env-project-architecture.png)
+![4TierAppArchitecture!](https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/prod-env-project-architecture-v2.png)
 ## NOTE (ANNOUNCEMENT) DEC 29th:
 - I recently updated the branch name `three-tier-mailing-app-project` where the project scripts are in to `four-tier-mailing-app-project` 
 - You do not have to border about changing anything on your end because the project runbooks/scripts are all still the same, I only update the branch name to match the architecture we're building for this Application.
