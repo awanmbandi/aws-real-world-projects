@@ -461,64 +461,6 @@ Now run the above command to check added identities or Private keys
 ```ssh USER_NAME@"Private Instance IP Address"```
 - (Once you run this command you will be allowed into the server. That is SSH Agent port fording. It makes use of the locally stored Identity). 
 
-#### 2. Configure Your Appserver Environment
-- Use the following Runbook: https://github.com/awanmbandi/aws-real-world-projects/blob/four-tier-mailing-app-project/appservers-startup-script/app-automation.sh
-- Once You're Done Configuring the Appserver Environment, Go Ahead and `Integrate App and Web with LoadBalancers`
-
-#### 3. Integrate the `Webserver and Appserver` Instance With Your `Frontend and Backend Load Balancer`
-##### REGISTER FRONTEND TARGET GROUP
-- Click on EC2, Click on `Target Groups`
-    - Click on `Frontend-LB-HTTP-TG`
-    - Click on `Registered Targets`
-        - Select the `Prod-Webserver`
-        - Click `Inlcude as pending below`
-        - Click `Register pending targets`
-
-##### REGISTER FRONTEND TARGET GROUP
-- Click on EC2, Click on `Target Groups`
-    - Click on `Backend-LB-HTTP-TG`
-    - Click on `Registered Targets`
-        - Select the `Prod-Appserver`
-        - Click `Inlcude as pending below`
-        - Click `Register pending targets`
-
-##### AFTER REGISTERING APP and WEB with LOAD BALANCERS 
-1. Go ahead and Test the Solution
-2. NOTE: You might need to give it some time to Provision
-
-
-## CONGRATULATIONS!!! CONGRATULATIONS!!! CONGRATULATIONS!!!
-## CONGRATULATIONS!!! CONGRATULATIONS!!! CONGRATULATIONS!!!
-
-
-## PART 2: EXTEND YOUR SOLUTION WITH HIGH AVAILABILITY WITH AUTO SCALING
-## STEP 10: Create Webserver and Appserver Golden AMIs
-### 10.1: Create Webserver Golden AMI
-- Navigate to the EC2 Console
-- Select your `Prod-Webserver` instance
-- Click on `Actions` >> Select `Image and Template`
-    - Click `Create Image`
-        - Name: `PHP-Webserver-Golden-AMI`
-        - Description: `PHP-Webserver-Golden-AMI`
-    - Click on `CREATE`
-
-### 10.2: Create Appserver Golden AMI
-- Navigate to the EC2 Console
-- Select your `Prod-Appserver` instance
-- Click on `Actions` >> Select `Image and Template`
-    - Click `Create Image`
-        - Name: `PHP-Appserver-Golden-AMI`
-        - Description: `PHP-Appserver-Golden-AMI`
-    - Click on `CREATE`
-
-### 10.3: Verify AMI Creation
-- Still on the EC2 Console
-- Navigate to `Images`
-- Click on `AMIs`
-    - Update Webserver AMI name: `PHP-Webserver-Golden-AMI`
-    - Update Appserver AMI name: `PHP-Appserver-Golden-AMI`
-    - Verify Status: `Available`
-
 ## STEP 10: Create Webservers and Apservers Launch Templates
 ### Create Webserver Launch Template
 - Naviagte to EC2/Launch Configuration
@@ -526,7 +468,7 @@ Now run the above command to check added identities or Private keys
     - Switch by Clicking on `Create launch template`
         - Name: `Prod-Webservers-LT`
         - Template version description: `Prod-Webservers-LT Version 1`
-        - My AMI: Select for `PHP-Webserver-Golden-AMI`
+        - My AMI: Select for `Ubuntu 20.04 LTS`
         - Instance type: `t2.micro`
         - Key pair: Create a new key pair `california-keypair`
         - Network Settings:
@@ -549,7 +491,7 @@ Now run the above command to check added identities or Private keys
     - Switch by Clicking on `Create launch template`
         - Name: `Prod-Appservers-LT`
         - Template version description: `Prod-Appservers-LT Version 1`
-        - My AMI: Select `PHP-Appserver-Golden-AMI`
+        - My AMI: Select `Amazon Linux 2`
         - Instance type: `t2.micro`
         - Key pair: Create a new key pair `california-keypair`
         - Network Settings:
