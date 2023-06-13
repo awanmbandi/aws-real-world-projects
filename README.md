@@ -643,6 +643,8 @@ SELECT * FROM EMPLOYEES;
 - Select the App Database Instance
 - Click on `Actions`
 - Click on `REBOOT`
+    - Select `Reboot With Failover?`
+    - Click `CONFIRM`
 
 - `CONFIRM THAT THE APPLICATION IS STILL ACCESSIBLE` and
 - `That you are still logged into the Database from your Terminal`
