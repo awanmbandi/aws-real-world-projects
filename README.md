@@ -599,39 +599,8 @@ SELECT * FROM EMPLOYEES;
 - `That you are still logged into the Database from your Terminal`
 
 ## CONGRATULATIONS!! CONGRATULATIONS!!
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-.
-## Certificate Manager SSL/TLS Certificate Integration
+
+## (OPTIONAL): Certificate Manager SSL/TLS Certificate Integration
 - Navigate to the `Certificate Manager` Service
 - Region: Confim you are in the same Region as your workloads
 - Click `Request a Certificate`
