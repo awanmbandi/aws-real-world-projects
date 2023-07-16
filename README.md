@@ -553,7 +553,7 @@ Now run the above command to check added identities or Private keys
 
 - Refresh `Health Check Console` to Confirm `Healthy State`
 
-## ADD SOME DATA INTO THE APPLICATION FROM THE APP 
+## ADD Some Data Into The Application From The Browser
 1. Navigate to: `www.jjtechphp-fourtier-webapplication.com/VenturaMailingApp.php`
 - Add `5 Employee Entries` and Example Addresses
 
