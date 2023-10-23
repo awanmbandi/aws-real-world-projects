@@ -17,7 +17,7 @@ db_username            : "admin"   # Replace with the desired database username
 db_password            : "adminadmin"   # Replace with the desired database password
 
 # RDS Instance Configuration
-db_instance_class      : "db.t2.micro" # Replace with the desired instance class
+db_instance_class      : "db.t2.small" # Replace with the desired instance class
 db_allocated_storage   : 20            # Replace with the desired storage allocation in GB
 db_storage_encrypted   : true          # Set to "true" to enable storage encryption, "false" to disable
 db_skip_final_snapshot : true          # Set to "true" to skip the final snapshot during deletion
