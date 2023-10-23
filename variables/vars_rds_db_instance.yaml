@@ -22,4 +22,5 @@ db_allocated_storage   : 20            # Replace with the desired storage alloca
 db_storage_encrypted   : true          # Set to "true" to enable storage encryption, "false" to disable
 db_skip_final_snapshot : true          # Set to "true" to skip the final snapshot during deletion
 initial_db_name        : "wordpressdb" # Provide your desired initial database name
+db_subnet_ids          : "subnet-029b701822d42d8f0"
 db_security_group_ids  : "sg-0eb1cb70958d9434c"

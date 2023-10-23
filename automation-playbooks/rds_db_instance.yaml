@@ -23,5 +23,5 @@
       storage_encrypted   : "{{ db_storage_encrypted }}"
       skip_final_snapshot : "{{ db_skip_final_snapshot }}"
       initial_db_name     : "{{ initial_db_name }}"
-      subnet_ids          : "{{ database_subnet_id }}"
+      subnet_ids          : "{{ db_subnet_ids }}"
       security_group_ids  : "{{ db_security_group_ids }}"
