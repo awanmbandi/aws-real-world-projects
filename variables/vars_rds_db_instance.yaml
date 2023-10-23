@@ -23,4 +23,4 @@ db_storage_encrypted   : true          # Set to "true" to enable storage encrypt
 db_skip_final_snapshot : true          # Set to "true" to skip the final snapshot during deletion
 db_name                : "wordpressdb" # Provide your desired initial database name
 db_subnet_group_name   : "default"
-db_security_group_ids  : "sg-0eb1cb70958d9434c"
+db_vpc_security_group_ids : "sg-0eb1cb70958d9434c"
