@@ -64,7 +64,7 @@
       register: private_route_table
     
     # Subnet Association
-    - name: Associate App/Webserver Subnet with the Public Route Table
+    - name: Associate App-Webserver Subnet with the Public Route Table
       ec2_vpc_subnet_route_table:
         vpc_id: "{{ vpc.vpc.id }}"
         subnet_id: "{{ public_subnet.subnet.id }}"
