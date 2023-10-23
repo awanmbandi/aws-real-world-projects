@@ -48,6 +48,7 @@
         vpc_id: "{{ vpc.vpc.id }}"
         state: "{{ webapp_subnet_route_table_state }}"
         region: "{{ webapp_subnet_route_table_region }}"
+        subnets: [ "{{ public_subnet.subnet.id }}" ]
         routes:
           - dest: "{{ webapp_subnet_route_table_destination }}"
             gateway_id: "{{ igw.gateway.id }}"
@@ -58,25 +59,11 @@
         vpc_id: "{{ vpc.vpc.id }}"
         state: "{{ database_subnet_route_table_state }}"
         region: "{{ database_subnet_route_table_region }}"
+        subnets: [ "{{ private_subnet.subnet.id }}" ]
         routes:
           - dest: "{{ database_subnet_route_table_destination }}"
             gateway_id: "{{ nat_gateway.gateway.id }}"
       register: private_route_table
-    
-    # Subnet Association
-    - name: Associate App-Webserver Subnet with the Public Route Table
-      amazon.aws.ec2_vpc_subnet_route_table:
-        vpc_id: "{{ vpc.vpc.id }}"
-        subnet_id: "{{ public_subnet.subnet.id }}"
-        route_table_id: "{{ public_route_table.route_table.id }}"
-        region: us-east-1
-
-    - name: Associate Database Subnet with the Private Route Table
-      amazon.aws.ec2_vpc_subnet_route_table:
-        vpc_id: "{{ vpc.vpc.id }}"
-        subnet_id: "{{ private_subnet.subnet.id }}"
-        route_table_id: "{{ private_route_table.route_table.id }}"
-        region: us-east-1
     
     - name: Create Resource IDs file
       command: touch ~/network_configuration_ids.yaml
