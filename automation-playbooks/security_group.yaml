@@ -2,6 +2,8 @@
 - name        : "{{ play_name }}"
   hosts       : "{{ hosts }}"
   gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - ../variables/vars_security_group.yaml
   
   tasks:
     - name: Web/Appserver Security Group
