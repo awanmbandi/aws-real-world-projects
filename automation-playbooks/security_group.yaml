@@ -2,6 +2,7 @@
 - name        : "{{ play_name }}"
   hosts       : "{{ hosts }}"
   gather_facts: "{{ gather_facts }}"
+  become: yes
   vars_files:
     - ../variables/vars_security_group.yaml
   vars:
@@ -51,6 +52,9 @@
     #     appweb_securitygroup_id  : "{{ webapsecuritygroup.group_id }}"
 
     # Save The Web/Appserver and Database Security Group IDs in a YAML Config File
+    - name:  Create WebApp and DB Security Group ID Config File
+      command: touch ~/webapp_db_security_group_ids.yaml
+
     - name: Write Security Group IDs to YAML File
       copy:
         content: |
