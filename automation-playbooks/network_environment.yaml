@@ -65,14 +65,14 @@
     
     # Subnet Association
     - name: Associate App-Webserver Subnet with the Public Route Table
-      ec2_vpc_subnet_route_table:
+      amazon.aws.ec2_vpc_subnet_route_table:
         vpc_id: "{{ vpc.vpc.id }}"
         subnet_id: "{{ public_subnet.subnet.id }}"
         route_table_id: "{{ public_route_table.route_table.id }}"
         region: us-east-1
 
     - name: Associate Database Subnet with the Private Route Table
-      ec2_vpc_subnet_route_table:
+      amazon.aws.ec2_vpc_subnet_route_table:
         vpc_id: "{{ vpc.vpc.id }}"
         subnet_id: "{{ private_subnet.subnet.id }}"
         route_table_id: "{{ private_route_table.route_table.id }}"
