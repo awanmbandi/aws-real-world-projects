@@ -53,7 +53,7 @@
         subnets: [ "{{ public_subnet.subnet.id }}" ]
         routes:
           - dest: "{{ webapp_subnet_route_table_destination }}"
-            gateway_id: "{{ igw.gateway.id }}"
+            gateway_id: "{{ igw.id }}"
       register: public_route_table
 
     - name: Private Route Table
