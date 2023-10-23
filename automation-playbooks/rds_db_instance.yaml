@@ -12,14 +12,14 @@
     include_vars:
       file: ~/network_configuration_ids.yaml
   
-  - name: Read Security Group ID from YAML File
-    slurp:
-      src: ~/security_group_id.yaml
-    register: security_group_id_file
+  # - name: Read Security Group ID from YAML File
+  #   slurp:
+  #     src: ~/security_group_id.yaml
+  #   register: security_group_id_file
 
-  - name: Set Security Group ID Variable
-    set_fact:
-      security_group_id: "{{ (security_group_id_file.content | b64decode) | from_yaml }}"
+  # - name: Set Security Group ID Variable
+  #   set_fact:
+  #     security_group_id: "{{ (security_group_id_file.content | b64decode) | from_yaml }}"
 
   - name                  : "{{ task_name }}"
     rds_instance:
