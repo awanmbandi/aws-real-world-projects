@@ -4,10 +4,6 @@
   gather_facts: "{{ gather_facts }}"
   
   tasks:
-    - name: Import VPC ID Data
-      include_vars:
-        file: ~/network_configuration_ids.yaml
-
     - name: Web/Appserver Security Group
       ec2_group:
         name:        "{{ webapp_server_sg_name}}"

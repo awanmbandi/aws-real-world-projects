@@ -7,10 +7,6 @@
     - ../variables/vars_appserver_instance.yaml
 
   tasks:
-  - name: Import Application/Webserver Subnet Info
-    include_vars:
-      file: ~/network_configuration_ids.yaml
-
     # This Task Launches an Application/Webserver EC2 Instance
   - name              : "{{ task_name }}"
     ec2:

@@ -11,10 +11,9 @@ task_name   : "Wordpress Web Application Server"
 image           : "ami-0fc5d935ebf8bc3bc"  # Replace with the desired Amazon Machine Image (AMI)
 instance_type   : "t2.micro"        # Replace with the desired EC2 instance type
 region          : "us-east-1"       # Replace with your desired region
-group_id        : "sg-0123456789"   # Replace with your security group ID
-vpc_subnet_id   : "subnet-0123456789"  # Replace with your subnet ID
-key_name        : "your-key-pair"   # Replace with your key pair name
+vpc_subnet_id   : "subnet-004b1bd45542395d6"  # Replace with your subnet ID
+key_name        : "work_nova_key_newaccount"   # Replace with your key pair name
 assign_public_ip: yes
-count_tag       : "WebServer"       # Replace with the instance count tag name
+count_tag       : "WebAppServer"       # Replace with the instance count tag name
 exact_count     : 1                 # Replace with the desired number of instances to launch
-instance_tags   : "WebServer"       # Replace with your instance tags
+instance_tags   : "WebAppServer"       # Replace with your instance tags
