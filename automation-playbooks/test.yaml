@@ -1,0 +1,69 @@
+- name: vpc
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  tasks:
+    - name: create vpc
+      amazon.aws.ec2_vpc_net:
+        name: custom_vpc
+        cidr_block: 10.0.0.0/16
+        region: ap-southeast-3
+      register: vpc
+
+    - name: create subnet for first az
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{ vpc.vpc.id }}"
+        state: present
+        az: ap-southeast-3a
+        cidr: 10.0.1.0/28
+      register: az1_apse3
+
+    - name: create subnet for second az
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{ vpc.vpc.id }}"
+        state: present
+        az: ap-southeast-3b
+        cidr: 10.0.2.0/28
+      register: az2_apse3
+
+    - name: create subnet for third az
+      amazon.aws.ec2_vpc_subnet:
+        vpc_id: "{{ vpc.vpc.id }}"
+        state: present
+        az: ap-southeast-3c
+        cidr: 10.0.3.0/28
+      register: az3_apse3
+
+    - name: create internet gateway
+      amazon.aws.ec2_vpc_igw:
+        vpc_id: "{{ vpc.vpc.id }}"
+        state: present
+      register: igw
+
+    - name: create custom route table
+      amazon.aws.ec2_vpc_route_table:
+        vpc_id: "{{ vpc.vpc.id }}"
+        region: ap-southeast-3
+        subnets:
+          - "{{ az1_apse3.subnet.id }}"
+          - "{{ az2_apse3.subnet.id }}"
+          - "{{ az3_apse3.subnet.id }}"
+        routes:
+          - dest: 0.0.0.0/0
+            gateway_id: "{{ igw.gateway_id }}"
+
+    - name: create security group
+      amazon.aws.ec2_group:
+        name: ssh-web
+        description: allow ssh and http
+        vpc_id: "{{ vpc.vpc.id }}"
+        region: ap-southeast-3
+        rules:
+          - proto: tcp
+            ports: 22
+            cidr_ip: 0.0.0.0/0
+          - proto: tcp
+            ports: 80
+            cidr_ip: 0.0.0.0/0
+
+
