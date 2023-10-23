@@ -9,6 +9,10 @@
     ansible_python_interpreter: /usr/bin/python3
 
   tasks:
+  - name: Include Security Group IDs
+    include_vars:
+      file: ~/webapp_db_security_group_ids.yaml
+
     # This Task Launches an Application/Webserver EC2 Instance
   - name              : "{{ webapp_instance_task_name }}"
     ec2:

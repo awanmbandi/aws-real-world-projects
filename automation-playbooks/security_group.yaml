@@ -45,22 +45,17 @@
             cidr_ip: "{{ database_sg_rules_cidr_ip }}"  # Allow MySQL Access
       register: databasesecuritygroup
     
-    - name: Set Security Group IDs as Ansible Variables
-      set_fact:
-        database_securitygroup_id: "{{ databasesecuritygroup.group_id }}"
-        appweb_securitygroup_id  : "{{ webapsecuritygroup.group_id }}"
+    # - name: Set Security Group IDs as Ansible Variables
+    #   set_fact:
+    #     database_securitygroup_id: "{{ databasesecuritygroup.group_id }}"
+    #     appweb_securitygroup_id  : "{{ webapsecuritygroup.group_id }}"
 
+    # Save The Web/Appserver and Database Security Group IDs in a YAML Config File
+    - name: Write Security Group IDs to YAML File
+      copy:
+        content: |
+          webapp_security_group_id: "{{ webapsecuritygroup.group_id }}"
+          database_security_group_id: "{{ databasesecuritygroup.group_id }}"
+        dest: ~/webapp_db_security_group_ids.yaml
 
-
-
-
-    # # Save The Web/Appserver and Database Security Group IDs in a YAML Config File
-    # - name: Write Web/Appserver Security Group ID to YAML File
-    #   copy:
-    #     content: "{{ webapsecuritygroup.group_id | to_nice_yaml }}"
-    #     dest: ~/security_group_id.yaml
-    # - name: Write Database Security Group ID to YAML File
-    #   copy:
-    #     content: "{{ databasesecuritygroup.group_id | to_nice_yaml }}"
-    #     dest: ~/security_group_id.yaml
 
