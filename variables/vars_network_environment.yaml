@@ -1,0 +1,36 @@
+# VPC Network
+vpc_name      : WebAppVPC
+vpc_state     : present
+vpc_cidr_block: "10.0.0.0/16"
+vpc_region    : "us-east-1"
+
+# Web/App Server Subnet
+webapp_subnet_state : present
+webapp_subnet_cidr  : "10.0.1.0/24"
+webapp_subnet_region: "us-east-1"
+
+# Database Subnet 
+database_subnet_state : present
+database_subnet_cidr  : "10.0.2.0/24"
+database_subnet_region: "us-east-1"
+
+# Internet Gateway
+webapp_subnet_igw_region: "us-east-1"
+
+# NAT Gateway
+database_subnet_nat_state : present
+database_subnet_nat_region: "us-east-1"
+
+# Web/App Server Subnet Route Table
+webapp_subnet_route_table_state      : present
+webapp_subnet_route_table_region     : "us-east-1"
+webapp_subnet_route_table_destination: "0.0.0.0/0"
+
+# Database Subnet Route Table
+database_subnet_route_table_state      : present
+database_subnet_route_table_region     : "us-east-1"
+database_subnet_route_table_destination: "0.0.0.0/0"
+
+
+
+

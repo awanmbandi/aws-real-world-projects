@@ -1,0 +1,18 @@
+---
+- name  : "{{ play_name }}"
+  hosts : "{{ target_host }}"
+  become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
+  vars_files:
+    - ../variables/vars_db_config.yaml
+
+  tasks:
+    - name: Remove the dedault DB Config file
+      command: "{{ remove_db_config_command }}"
+
+    - name: Copy Database Config file
+      copy:
+        src:  "{{ source_location }}"  # Source directory on the local machine
+        dest: "{{ destination_location }}"  # Destination path on the target server
+
+    - name: Changing Application Files Ownership
+      command: "{{ chown_execution_command }}"

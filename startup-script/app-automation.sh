@@ -37,11 +37,3 @@ sudo wget https://raw.githubusercontent.com/awanmbandi/google-cloud-projects/mai
 
 # Restart the Apache2 Service
 sudo service apache2 restart
-
-# Create a wp-config.php file on the document root from the sample configuration file
-# Also Update the database details in the wp-config.php file
-sudo rm -rf /var/www/wordpress/wp-config-sample.php
-sudo wget https://raw.githubusercontent.com/awanmbandi/google-cloud-projects/main/database-config/wp-config.php -P /var/www/wordpress/
-
-# Set appropriate apache permission to the files and directories
-sudo chown -R www-data:www-data /var/www/wordpress

@@ -23,10 +23,10 @@
 define( 'DB_NAME', 'wordpressdb' );
 
 /** Database username */
-define( 'DB_USER', 'root' );
+define( 'DB_USER', 'admin' );
 
 /** Database password */
-define( 'DB_PASSWORD', 'admin' );
+define( 'DB_PASSWORD', 'adminadmin' );
 
 /** Database hostname */
 define( 'DB_HOST', '34.121.191.245' );

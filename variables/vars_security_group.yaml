@@ -1,0 +1,17 @@
+# Define variables for the Application/Webserver and Database Security Group instance 
+# Playbook Configuration
+play_name   : "Wordpress Web Application Server Automation" 
+hosts       : "localhost"
+gather_facts: False
+
+# Web/App Server Security Group Varibales
+webapp_server_sg_name         : "webapp-security-group"
+webapp_server_sg_description  : "My Web-Appserver Security Group Description"
+webapp_server_sg_region       : us-east-1
+webapp_server_sg_rules_cidr_ip: 0.0.0.0/0
+
+# Database Security Group Varibales
+database_sg_name         : "database-security-group"
+database_sg_description  : "My Databse Security Group Description"
+database_sg_region       : us-east-1
+database_sg_rules_cidr_ip: 10.0.0.0/24

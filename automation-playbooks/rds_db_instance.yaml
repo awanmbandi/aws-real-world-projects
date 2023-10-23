@@ -1,0 +1,39 @@
+---
+- name        : "{{ play_name }}"
+  hosts       : "{{ hosts }}"
+  connection  : "{{ connection }}"
+  gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - ../variables/vars_rds_db_instance.yaml
+
+    # This Task Provisions The Application Database Instance
+  tasks:
+  - name: Import Database Subnet Info
+    include_vars:
+      file: ~/network_configuration_ids.yaml
+  
+  - name: Read Security Group ID from YAML File
+    slurp:
+      src: ~/security_group_id.yaml
+    register: security_group_id_file
+
+  - name: Set Security Group ID Variable
+    set_fact:
+      security_group_id: "{{ (security_group_id_file.content | b64decode) | from_yaml }}"
+
+  - name                  : "{{ task_name }}"
+    rds_instance:
+      id                  : "{{ db_identifier }}"
+      state               : "{{ db_state }}"
+      region              : "{{ db_region }}"
+      engine              : "{{ db_engine }}"
+      username            : "{{ db_username }}"
+      password            : "{{ db_password }}"
+      db_instance_class   : "{{ db_instance_class }}"
+      allocated_storage   : "{{ db_allocated_storage }}"
+      storage_encrypted   : "{{ db_storage_encrypted }}"
+      skip_final_snapshot : "{{ db_skip_final_snapshot }}"
+      initial_db_name     : "{{ initial_db_name }}"
+      subnet_ids          : "{{ database_subnet_id }}"
+      security_group_ids:
+        - "{{ database_securitygroup_id }}"

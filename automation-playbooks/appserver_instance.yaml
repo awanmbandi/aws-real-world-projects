@@ -1,0 +1,29 @@
+---
+- name        : "{{ play_name }}"
+  hosts       : "{{ hosts }}"
+  connection  : "{{ connection }}"
+  gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - ../variables/vars_appserver_instance.yaml
+
+  tasks:
+  - name: Import Application/Webserver Subnet Info
+    include_vars:
+      file: ~/network_configuration_ids.yaml
+
+    # This Task Launches an Application/Webserver EC2 Instance
+  - name              : "{{ task_name }}"
+    ec2:
+      image           : "{{ image }}"
+      instance_type   : "{{ instance_type }}"
+      region          : "{{ region }}"
+      group_id:
+        - "{{ appweb_securitygroup_id }}"
+      vpc_subnet_id   : "{{ webappserver_subnet_id }}"
+      key_name        : "{{ key_name }}"
+      assign_public_ip: "{{ assign_public_ip }}"
+      count_tag:
+        Name          : "{{ count_tag }}"
+      exact_count     : "{{ exact_count }}"
+      instance_tags:
+        Name          : "{{ instance_tags }}"

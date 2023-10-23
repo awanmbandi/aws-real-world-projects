@@ -1,0 +1,66 @@
+---
+- name        : "{{ play_name }}"
+  hosts       : "{{ hosts }}"
+  gather_facts: "{{ gather_facts }}"
+  
+  tasks:
+    - name: Import VPC ID Data
+      include_vars:
+        file: ~/network_configuration_ids.yaml
+
+    - name: Web/Appserver Security Group
+      ec2_group:
+        name:        "{{ webapp_server_sg_name}}"
+        description: "{{ webapp_server_sg_description }}"
+        vpc_id:      "{{ vpc_id }}"
+        region:      "{{ webapp_server_sg_region }}"  # Replace with your desired region
+        rules:
+          - proto: tcp
+            from_port: 22
+            to_port: 22
+            cidr_ip: "{{ webapp_server_sg_rules_cidr_ip }}"  # Allow SSH from anywhere (open to the world)
+          - proto: tcp
+            from_port: 80
+            to_port: 80
+            cidr_ip: "{{ webapp_server_sg_rules_cidr_ip }}"  # Allow HTTP (port 80) from anywhere
+          - proto: tcp
+            from_port: 443
+            to_port: 443
+            cidr_ip: "{{ webapp_server_sg_rules_cidr_ip }}"  # Allow HTTPS (port 443) from anywhere
+        rules_egress:
+          - proto: all
+            cidr_ip: "{{ webapp_server_sg_rules_cidr_ip }}"  # Allow all outbound traffic (open to the world)
+      register: webapsecuritygroup
+    
+    - name: Database Security Group
+      ec2_group:
+        name       : "{{ database_sg_name }}"
+        description: "{{ database_sg_description }}"
+        vpc_id     : "{{ vpc_id }}"
+        region     : "{{ database_sg_region }}"  # Replace with your desired region
+        rules:
+          - proto: tcp
+            from_port: 3306
+            to_port: 3306
+            cidr_ip: "{{ database_sg_rules_cidr_ip }}"  # Allow MySQL Access
+      register: databasesecuritygroup
+    
+    - name: Set Security Group IDs as Ansible Variables
+      set_fact:
+        database_securitygroup_id: "{{ databasesecuritygroup.group_id }}"
+        appweb_securitygroup_id  : "{{ appwebsecuritygroup.group_id }}"
+
+
+
+
+
+    # # Save The Web/Appserver and Database Security Group IDs in a YAML Config File
+    # - name: Write Web/Appserver Security Group ID to YAML File
+    #   copy:
+    #     content: "{{ webapsecuritygroup.group_id | to_nice_yaml }}"
+    #     dest: ~/security_group_id.yaml
+    # - name: Write Database Security Group ID to YAML File
+    #   copy:
+    #     content: "{{ databasesecuritygroup.group_id | to_nice_yaml }}"
+    #     dest: ~/security_group_id.yaml
+
