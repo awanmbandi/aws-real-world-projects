@@ -2,6 +2,9 @@
 - name: Provision AWS VPC and Network Resources
   hosts: localhost
   gather_facts: no
+  vars_files:
+    - ../variables/vars_network_environment.yaml
+
   tasks:
     - name: Web Application VPC
       ec2_vpc_net:
