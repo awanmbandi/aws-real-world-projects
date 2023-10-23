@@ -48,7 +48,7 @@
     - name: Set Security Group IDs as Ansible Variables
       set_fact:
         database_securitygroup_id: "{{ databasesecuritygroup.group_id }}"
-        appweb_securitygroup_id  : "{{ appwebsecuritygroup.group_id }}"
+        appweb_securitygroup_id  : "{{ webapsecuritygroup.group_id }}"
 
 
 
