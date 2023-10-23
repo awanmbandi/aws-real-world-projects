@@ -9,13 +9,17 @@
     ansible_python_interpreter: /usr/bin/python3
   
   tasks:
+    - name: Set ansible_selinux to permissive
+      set_fact:
+        ansible_selinux: permissive
+        
     - name:  Create WebApp and DB Security Group ID Config File
       file: 
         path: /root/webapp_db_security_group_ids.yaml
         state: touch
         owner: root
         group: root
-        
+
     - name: Web/Appserver Security Group
       ec2_group:
         name:        "{{ webapp_server_sg_name}}"
