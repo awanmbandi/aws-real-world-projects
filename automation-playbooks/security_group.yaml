@@ -9,6 +9,13 @@
     ansible_python_interpreter: /usr/bin/python3
   
   tasks:
+    - name:  Create WebApp and DB Security Group ID Config File
+      file: 
+        path: /root/webapp_db_security_group_ids.yaml
+        state: touch
+        owner: root
+        group: root
+        
     - name: Web/Appserver Security Group
       ec2_group:
         name:        "{{ webapp_server_sg_name}}"
@@ -52,12 +59,6 @@
     #     appweb_securitygroup_id  : "{{ webapsecuritygroup.group_id }}"
 
     # Save The Web/Appserver and Database Security Group IDs in a YAML Config File
-    - name:  Create WebApp and DB Security Group ID Config File
-      file: 
-        path: /root/webapp_db_security_group_ids.yaml
-        state: touch
-        owner: root
-        group: root
 
     - name: Write Security Group IDs to YAML File
       copy:
