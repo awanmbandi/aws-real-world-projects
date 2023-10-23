@@ -1,0 +1,21 @@
+---
+- name  : "{{ play_name }}"
+  hosts : "{{ target_host }}"
+  become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
+  vars_files:
+    - ../variables/vars_appserver_configure.yaml
+
+  tasks:
+    - name: Clone the GitHub project repository (specific branch)
+      git:
+        repo      : "{{ project_repository }}"     # URL of your GitHub repository
+        dest      : "{{ destination_clone_path }}" # Local path where the repository will be cloned
+        version   : "{{ project_repo_branch }}"    # Specify the branch you want to checkout
+      delegate_to : "{{ delegate_to }}"
+
+    - name: Make the script executable
+      shell: "{{ assign_execute_permission }}"
+
+    - name: Execute the shell script
+      shell: "{{ execute_automation_script }}"
+

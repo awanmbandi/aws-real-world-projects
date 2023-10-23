@@ -1,0 +1,19 @@
+# Define variables for the Application/Webserver instance 
+# Playbook Configuration
+play_name   : "Wordpress Web Application Server Automation" 
+hosts       : "localhost"
+gather_facts: "False"
+connection  : "local"
+
+# Task Name for Identification
+webapp_instance_task_name       : "Wordpress Web Application Server"
+webapp_instance_image           : "ami-0fc5d935ebf8bc3bc"  # Replace with the desired Amazon Machine Image (AMI)
+webapp_instance_type            : "t2.micro"        # Replace with the desired EC2 instance type
+webapp_instance_region          : "us-east-1"       # Replace with your desired region
+webapp_instance_group_id        : "sg-0efe4197f6f6b95e5"
+webapp_instance_subnet_id       : "subnet-004b1bd45542395d6"  # Replace with your subnet ID
+webapp_instance_key_name        : "work_nova_key_newaccount"   # Replace with your key pair name
+webapp_instance_assign_public_ip: yes
+webapp_instance_count_tag       : "WebAppServer"       # Replace with the instance count tag name
+webapp_instance_exact_count     : 1                 # Replace with the desired number of instances to launch
+webapp_instance_instance_tags   : "WebAppServer"       # Replace with your instance tags

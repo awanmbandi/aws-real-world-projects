@@ -1,0 +1,28 @@
+---
+- name        : "{{ play_name }}"
+  hosts       : "{{ hosts }}"
+  connection  : "{{ connection }}"
+  gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - ../variables/vars_rds_db_instance.yaml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+    # This Task Provisions The Application Database Instance
+  tasks:
+  - name                  : "{{ task_name }}"
+    rds_instance:
+      id                  : "{{ db_identifier }}"
+      state               : "{{ db_state }}"
+      region              : "{{ db_region }}"
+      engine              : "{{ db_engine }}"
+      username            : "{{ db_username }}"
+      password            : "{{ db_password }}"
+      db_instance_class   : "{{ db_instance_class }}"
+      allocated_storage   : "{{ db_allocated_storage }}"
+      storage_encrypted   : "{{ db_storage_encrypted }}"
+      skip_final_snapshot : "{{ db_skip_final_snapshot }}"
+      db_name             : "{{ db_name }}"
+      db_subnet_group_name: "{{ db_subnet_group_name }}"
+      vpc_security_group_ids  : 
+        - "{{ db_vpc_security_group_ids }}"

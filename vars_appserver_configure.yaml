@@ -1,0 +1,16 @@
+# Define variables for the Application/Webserver instance Configuration
+# Playbook Configuration
+play_name   : Execute Shell Script from GitHub Repository
+target_host : ""
+become_root : yes
+
+# Project Repository and Branch
+project_repository    : https://github.com/awanmbandi/aws-real-world-projects.git
+destination_clone_path: ~/
+project_repo_branch   : ansible-tower-workflow-project
+delegate_to           : localhost
+
+# Assign Execution Permission and Execute Script
+assign_execute_permission: chmod +x ~/aws-real-world-projects/startup-script/app-automation.sh
+execute_automation_script: ~/aws-real-world-projects/startup-script/app-automation.sh
+

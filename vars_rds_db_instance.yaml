@@ -1,0 +1,26 @@
+# Define variables for the RDS instance creation
+# Playbook Configuration
+play_name   : "Wordpress Web Application Database Automation"
+hosts       : "localhost"
+gather_facts: "False"
+connection  : "local"
+
+# Task Name for Identification
+task_name   : "Wordpress Web Application Database"
+
+# RDS Instance Details
+db_identifier          : "wordpressappdb" # Replace with your desired RDS instance identifier
+db_state               : "absent"            # "present" to create, "absent" to delete the RDS instance
+db_region              : "us-east-1"        # Replace with your desired AWS region
+db_engine              : "mysql"     # Replace with the RDS database engine (e.g., "mysql")
+db_username            : "admin"   # Replace with the desired database username
+db_password            : "adminadmin"   # Replace with the desired database password
+
+# RDS Instance Configuration
+db_instance_class      : "db.t2.small" # Replace with the desired instance class
+db_allocated_storage   : 20            # Replace with the desired storage allocation in GB
+db_storage_encrypted   : true          # Set to "true" to enable storage encryption, "false" to disable
+db_skip_final_snapshot : true          # Set to "true" to skip the final snapshot during deletion
+db_name                : "wordpressdb" # Provide your desired initial database name
+db_subnet_group_name   : "default"
+db_vpc_security_group_ids : "sg-0eb1cb70958d9434c"

@@ -1,0 +1,17 @@
+# Playbook Configuration
+play_name : "Deploy Web Application"
+target_host : ""
+become_root : yes
+
+# Task 1 Parameters
+# Remove the Default App Database Config File for Reconfiguration
+remove_db_config_command: sudo rm -rf /var/www/wordpress/wp-config-sample.php
+
+# Task 2 Parameters
+# Create a wp-config.php file on the document root from the sample configuration file
+source_location: ~/aws-real-world-projects/database-config/wp-config.php  # Source directory on the local machine
+destination_location: /var/www/wordpress/  # Destination path on the target server
+
+# Task 3 Parameters
+# Set appropriate apache permission to the files and directories
+chown_execution_command : sudo chown -R www-data:www-data /var/www/wordpress
