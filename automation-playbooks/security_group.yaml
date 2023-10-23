@@ -8,7 +8,7 @@
       ec2_group:
         name:        "{{ webapp_server_sg_name}}"
         description: "{{ webapp_server_sg_description }}"
-        vpc_id:      "{{ vpc_id }}"
+        vpc_id:      "{{ webapp_server_sg_vpc_id }}"
         region:      "{{ webapp_server_sg_region }}"  # Replace with your desired region
         rules:
           - proto: tcp
@@ -32,7 +32,7 @@
       ec2_group:
         name       : "{{ database_sg_name }}"
         description: "{{ database_sg_description }}"
-        vpc_id     : "{{ vpc_id }}"
+        vpc_id     : "{{ database_server_sg_vpc_id }}"
         region     : "{{ database_sg_region }}"  # Replace with your desired region
         rules:
           - proto: tcp
