@@ -24,5 +24,4 @@
       skip_final_snapshot : "{{ db_skip_final_snapshot }}"
       initial_db_name     : "{{ initial_db_name }}"
       subnet_ids          : "{{ database_subnet_id }}"
-      security_group_ids:
-        - "{{ database_securitygroup_id }}"
+      security_group_ids  : "{{ db_security_group_ids }}"

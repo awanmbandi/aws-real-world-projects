@@ -19,8 +19,7 @@
       image           : "{{ webapp_instance_image }}"
       instance_type   : "{{ webapp_instance_type }}"
       region          : "{{ webapp_instance_region }}"
-      group_id:
-        - "{{ appweb_securitygroup_id }}"
+      group_id        : "{{ webapp_instance_group_id }}"
       vpc_subnet_id   : "{{ webapp_instance_subnet_id }}"
       key_name        : "{{ webapp_instance_key_name }}"
       assign_public_ip: "{{ webapp_instance_assign_public_ip }}"
