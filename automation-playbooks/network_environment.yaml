@@ -36,6 +36,7 @@
       ec2_vpc_igw:
         vpc_id: "{{ vpc.vpc.id }}"
         region: "{{ webapp_subnet_igw_region }}"
+        state:  "{{ webapp_subnet_igw_state }}"
       register: igw
 
     - name: NAT Gateway
@@ -53,7 +54,7 @@
         subnets: [ "{{ public_subnet.subnet.id }}" ]
         routes:
           - dest: "{{ webapp_subnet_route_table_destination }}"
-            gateway_id: "{{ igw.gateway.id }}"
+            gateway_id: "{{ igw.gateway_id }}"
       register: public_route_table
 
     - name: Private Route Table

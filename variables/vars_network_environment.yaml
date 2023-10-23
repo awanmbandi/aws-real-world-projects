@@ -15,6 +15,7 @@ database_subnet_cidr  : "10.0.2.0/24"
 database_subnet_region: "us-east-1"
 
 # Internet Gateway
+webapp_subnet_igw_state : present
 webapp_subnet_igw_region: "us-east-1"
 
 # NAT Gateway
