@@ -4,6 +4,8 @@
   gather_facts: "{{ gather_facts }}"
   vars_files:
     - ../variables/vars_security_group.yaml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
   
   tasks:
     - name: Web/Appserver Security Group

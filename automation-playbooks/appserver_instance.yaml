@@ -5,6 +5,8 @@
   gather_facts: "{{ gather_facts }}"
   vars_files:
     - ../variables/vars_appserver_instance.yaml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
   tasks:
     # This Task Launches an Application/Webserver EC2 Instance

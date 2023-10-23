@@ -5,6 +5,8 @@
   gather_facts: "{{ gather_facts }}"
   vars_files:
     - ../variables/vars_rds_db_instance.yaml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
 
     # This Task Provisions The Application Database Instance
   tasks:
