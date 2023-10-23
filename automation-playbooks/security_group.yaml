@@ -53,13 +53,13 @@
 
     # Save The Web/Appserver and Database Security Group IDs in a YAML Config File
     - name:  Create WebApp and DB Security Group ID Config File
-      command: touch ~/webapp_db_security_group_ids.yaml
+      command: touch /home/centos/webapp_db_security_group_ids.yaml
 
     - name: Write Security Group IDs to YAML File
       copy:
         content: |
           webapp_security_group_id: "{{ webapsecuritygroup.group_id }}"
           database_security_group_id: "{{ databasesecuritygroup.group_id }}"
-        dest: ~/webapp_db_security_group_ids.yaml
+        dest: /home/centos/webapp_db_security_group_ids.yaml
 
 
