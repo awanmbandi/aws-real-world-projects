@@ -34,6 +34,9 @@
     ec2_eip:
       region      : "{{ webapp_elastic_ip_region }}"
       device_id   : "{{ webapp.instance_ids[0] }}"
+      # reuse_existing_ip_allowed: true
       # in_vpc      : true
-      eip         : "{{ webapp_elastic_ip_address }}"
-    changed_when: false
+      tag_name    : env
+      tag_value   : dev
+      # eip         : "{{ webapp_elastic_ip_address }}"
+    # changed_when: false
