@@ -1,0 +1,7 @@
+architecture: x86_64
+root_device_type: ebs
+source_dest_check: true
+tags:
+  Environment: Dev
+  Name: Ansible-Tower
+virtualization_type: hvm
