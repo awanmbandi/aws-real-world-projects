@@ -6,11 +6,11 @@ become_root : yes
 
 # Project Repository and Branch
 project_repository    : https://github.com/awanmbandi/aws-real-world-projects.git
-destination_clone_path: ~/
+destination_clone_path: ~/ansible-tower
 project_repo_branch   : ansible-tower-workflow-project
 delegate_to           : localhost
 
 # Assign Execution Permission and Execute Script
-assign_execute_permission: chmod +x ~/aws-real-world-projects/startup-script/app-automation.sh
-execute_automation_script: ~/aws-real-world-projects/startup-script/app-automation.sh
+assign_execute_permission: chmod +x ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
+execute_automation_script: ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
 
