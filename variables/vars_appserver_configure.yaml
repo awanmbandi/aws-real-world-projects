@@ -11,6 +11,6 @@ clone_project_repo    : yes
 update_project_repo   : yes
 
 # Assign Execution Permission and Execute Script
-assign_execute_permission: chmod +x ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
-execute_automation_script: ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
+# assign_execute_permission: chmod +x ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
+# execute_automation_script: ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
 
