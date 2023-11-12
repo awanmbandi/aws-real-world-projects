@@ -12,7 +12,6 @@
         dest      : "{{ destination_clone_path }}" # Local path where the repository will be cloned
         clone     : "{{ clone_project_repo }}"    # Specify the branch you want to checkout
         update    : "{{ update_project_repo }}"
-        warn: false
 
     - name: Make the script executable
       shell: "{{ assign_execute_permission }}"
