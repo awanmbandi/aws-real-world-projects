@@ -1,7 +1,7 @@
 # Define variables for the Application/Webserver instance Configuration
 # Playbook Configuration
 play_name   : Execute Shell Script from GitHub Repository
-target_host : ""
+target_host : all
 become_root : yes
 
 # Project Repository and Branch
