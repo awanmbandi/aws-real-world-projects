@@ -2,6 +2,7 @@
 - name  : "{{ play_name }}"
   hosts : "{{ target_host }}"
   become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
+  warn  : false
   vars_files:
     - variables/vars_appserver_configure.yaml
 
