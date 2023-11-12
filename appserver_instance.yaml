@@ -27,7 +27,7 @@
       # count           : "{{ webapp_instance_count }}"
       instance_tags:
         Name          : "{{ webapp_instance_instance_tags }}"
-      # user_data       : "{{ webapp_instance_user_data_script }}"
+      user_data       : "{{ webapp_instance_user_data_script }}"
     register            : webapp
   
   - name          : Associate Elastic IP

@@ -19,16 +19,16 @@ webapp_instance_count_tag       : "WebAppServer"       # Replace with the instan
 #webapp_instance_count           : 1
 #webapp_instance_count           : 1                 # Replace with the desired number of instances to launch
 webapp_instance_instance_tags   : "WebAppServer"       # Replace with your instance tags
-# webapp_instance_user_data_script: |
-#   #!/bin/bash
-#   sudo apt update -y
-#   sudo su
-#   useradd ansibletower -m
-#   echo "ansibletower:ansibletower" | chpasswd 
-#   sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
-#   systemctl restart sshd
-#   echo "ansibletower ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-#   apt install git -y
+webapp_instance_user_data_script: |
+                                  #!/bin/bash
+                                  sudo apt update -y
+                                  sudo su
+                                  useradd ansibletower -m
+                                  echo "ansibletower:ansibletower" | chpasswd 
+                                  sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+                                  systemctl restart sshd
+                                  echo "ansibletower ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+                                  apt install git -y
 
 ## Elastic IP Task Variables/Values
 webapp_elastic_ip_region         : us-east-1
