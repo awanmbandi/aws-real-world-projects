@@ -13,9 +13,9 @@
         clone     : "{{ clone_project_repo }}"    # Specify the branch you want to checkout
         update    : "{{ update_project_repo }}"
 
-    # - name: Make the script executable
-    #   shell: "{{ assign_execute_permission }}"
+    - name: Make the script executable
+      shell: "{{ assign_execute_permission }}"
 
-    # - name: Execute the shell script
-    #   shell: "{{ execute_automation_script }}"
+    - name: Execute the shell script
+      shell: "{{ execute_automation_script }}"
 
