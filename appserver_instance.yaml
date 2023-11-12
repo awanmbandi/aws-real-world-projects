@@ -24,15 +24,16 @@
       # count           : "{{ webapp_instance_count }}"
       count_tag:
         Name          : "{{ webapp_instance_count_tag }}"
-      count           : "{{ webapp_instance_count }}"
+      # count           : "{{ webapp_instance_count }}"
       instance_tags:
         Name          : "{{ webapp_instance_instance_tags }}"
       # user_data       : "{{ webapp_instance_user_data_script }}"
+    register            : webapp
   
   - name          : Associate Elastic IP
     ec2_eip:
       region      : "{{ webapp_elastic_ip_region }}"
-      instance_id : "{{ ec2.instances[0].id }}"
+      instance_id : "{{ webapp.instance_ids[0] }}"
       in_vpc      : true
       eip         : "{{ webapp_elastic_ip_address }}"
     changed_when: false
