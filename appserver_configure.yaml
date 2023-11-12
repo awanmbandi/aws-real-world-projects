@@ -2,12 +2,12 @@
 - name  : "{{ play_name }}"
   hosts : "{{ target_host }}"
   become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
-  warn  : false
   vars_files:
     - variables/vars_appserver_configure.yaml
 
   tasks:
     - name: Clone the GitHub project repository (specific branch)
+      warn: false
       git:
         repo      : "{{ project_repository }}"     # URL of your GitHub repository
         dest      : "{{ destination_clone_path }}" # Local path where the repository will be cloned
