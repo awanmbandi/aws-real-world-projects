@@ -7,7 +7,7 @@ connection  : "local"
 
 # Task Name for Identification
 webapp_instance_task_name       : "Wordpress Web Application Server"
-webapp_instance_image           : "ami-0fc5d935ebf8bc3bc"  # Replace with the desired Amazon Machine Image (AMI)
+webapp_instance_image           : "ami-06aa3f7caf3a30282"  # Replace with the desired Amazon Machine Image (AMI)
 webapp_instance_type            : "t2.micro"        # Replace with the desired EC2 instance type
 webapp_instance_region          : "us-east-1"       # Replace with your desired region
 webapp_instance_group_id        : "sg-0eb1cb70958d9434c"
