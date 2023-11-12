@@ -3,7 +3,7 @@
   hosts : "{{ target_host }}"
   become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
   vars_files:
-    - ../variables/vars_db_config.yaml
+    - variables/vars_db_config.yaml
 
   tasks:
     - name: Remove the dedault DB Config file
