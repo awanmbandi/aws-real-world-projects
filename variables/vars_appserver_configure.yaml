@@ -12,5 +12,5 @@ update_project_repo   : yes
 
 # Assign Execution Permission and Execute Script
 assign_execute_permission: cd /root/ansible-tower/ && git checkout ansible-tower-workflow-project && chmod +x ~/ansible-tower/startup-script/app-automation.sh
-execute_automation_script: cd /root/ansible-tower/ && git checkout ansible-tower-workflow-project && ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
+execute_automation_script: cd /root/ansible-tower/ && ~/ansible-tower/aws-real-world-projects/startup-script/app-automation.sh
 
