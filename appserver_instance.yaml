@@ -35,3 +35,4 @@
       instance_id : "{{ ec2.instances[0].id }}"
       in_vpc      : true
       eip         : "{{ webapp_elastic_ip_address }}"
+    changed_when: false
