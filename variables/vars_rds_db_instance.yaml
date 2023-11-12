@@ -10,7 +10,7 @@ task_name   : "Wordpress Web Application Database"
 
 # RDS Instance Details
 db_identifier          : "wordpressappdb" # Replace with your desired RDS instance identifier
-db_state               : "absent"            # "present" to create, "absent" to delete the RDS instance
+db_state               : "present"            # "present" to create, "absent" to delete the RDS instance
 db_region              : "us-east-1"        # Replace with your desired AWS region
 db_engine              : "mysql"     # Replace with the RDS database engine (e.g., "mysql")
 db_username            : "admin"   # Replace with the desired database username
