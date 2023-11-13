@@ -1,10 +1,10 @@
 ---
 - name: clone project repository
   hosts: all
-  # become: yes # Run commands with elevated privileges (e.g., sudo)
+  become: yes # Run commands with elevated privileges (e.g., sudo)
   tasks:
     - name: Clone Reposity and Checkout to Tower Project Branch
       git:
         repo      : https://github.com/awanmbandi/aws-real-world-projects.git     # URL of your GitHub repository
-        dest      : /root/ansible-tower-project/ # Local path where the repository will be cloned
+        dest      : /home/ansibletower/ansible-tower-project/ # Local path where the repository will be cloned
         version   : ansible-tower-workflow-project    # Specify the branch you want to checkout
