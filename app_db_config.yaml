@@ -13,6 +13,7 @@
       copy:
         src:  "{{ source_location }}"  # Source directory on the local machine
         dest: "{{ destination_location }}"  # Destination path on the target server
+        remote_src: "{{ remote_src }}"
 
     - name: Changing Application Files Ownership
       command: "{{ chown_execution_command }}"
