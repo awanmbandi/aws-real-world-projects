@@ -32,7 +32,7 @@
   
   - name: "Instance ID"
     debug:
-      msg: "{{ server_info.instances.0.instance_id }}"
+      msg: "{{ ec2.instances.0.instance_id }}"
 
   - name          : Associate Elastic IP
     ec2_eip:
