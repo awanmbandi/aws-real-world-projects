@@ -1,6 +1,6 @@
 ---
 - name: "{{ play_name }}"
-  hosts: "{{ target_host }}"
+  # hosts: "{{ target_host }}"
   become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
   vars_files:
     - variables/vars_clone_project_repo_tower.yaml
