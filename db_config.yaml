@@ -9,7 +9,6 @@
         dest      : /opt/ # Local path where the repository will be cloned
         version   : ansible-tower-workflow-project    # Specify the branch you want to checkout
 
----
 - name: "{{ play_name }}"
   hosts: "{{ target_host }}"
   become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
