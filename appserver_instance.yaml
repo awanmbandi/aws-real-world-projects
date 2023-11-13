@@ -15,7 +15,11 @@
       region: "{{ webapp_instance_region }}"
       filters:
         "tag:Name": WebAppServer
-      register: existing_instance
+    register: existing_instance
+  
+  - name: Display Debug Information
+    debug:
+      var: existing_instance_result
 
   # This Task Launches an Application/Webserver EC2 Instance
   - name              : "{{ webapp_instance_task_name }}"
@@ -49,3 +53,4 @@
       tag_value   : dev
       # eip         : "{{ webapp_elastic_ip_address }}"
     # changed_when: false
+    when: existing_instance.instances | length == 0
