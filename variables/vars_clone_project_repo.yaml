@@ -1,0 +1,11 @@
+# Playbook Configuration
+play_name   : Execute Shell Script from GitHub Repository
+target_host : all
+become_root : yes
+
+# Project Repository and Branch
+project_repository    : https://github.com/awanmbandi/aws-real-world-projects.git
+destination_clone_path: /home/ansibletower/ansible-tower-project
+project_repo_branch   : ansible-tower-workflow-project
+# clone_project_repo    : yes
+# update_project_repo   : yes
