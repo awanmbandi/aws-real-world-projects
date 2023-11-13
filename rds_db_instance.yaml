@@ -1,7 +1,7 @@
 ---
 - name: "{{ play_name }}"
   hosts: "{{ hosts }}"
-  connection  : "{{ connection }}"
+  connection: "{{ connection }}"
   gather_facts: "{{ gather_facts }}"
   vars_files:
     - variables/vars_rds_db_instance.yaml
