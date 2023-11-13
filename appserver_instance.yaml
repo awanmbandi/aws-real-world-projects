@@ -14,7 +14,7 @@
     ec2_instance_info:
       region: "{{ webapp_instance_region }}"
       filters:
-        "tag:Name": WebAppServer
+        "tag:Name": "{{ webapp_instance_instance_tags }}"
     register: existing_instance
   
   - name: Display Debug Information
