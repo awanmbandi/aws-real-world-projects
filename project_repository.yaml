@@ -1,7 +1,7 @@
 ---
 - name: clone project repository
   hosts: localhost
-  become: yes # Run commands with elevated privileges (e.g., sudo)
+  # become: yes # Run commands with elevated privileges (e.g., sudo)
   tasks:
     - name: Clone Reposity and Checkout to Tower Project Branch
       git:
