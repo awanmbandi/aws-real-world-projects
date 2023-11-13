@@ -1,6 +1,6 @@
 ---
-- name        : "{{ play_name }}"
-  hosts       : "{{ hosts }}"
+- name: "{{ play_name }}"
+  hosts: "{{ hosts }}"
   connection  : "{{ connection }}"
   gather_facts: "{{ gather_facts }}"
   vars_files:

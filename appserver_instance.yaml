@@ -1,8 +1,8 @@
 ---
-- name        : "{{ play_name }}"
-  hosts       : "{{ hosts }}"
-  connection  : "{{ connection }}"
-  gather_facts: "{{ gather_facts }}"
+- name: "{{ play_name }}"
+  hosts: "{{ hosts }}"
+  connection: "{{ connection }}"
+  gather_facts: false
   vars_files:
     - variables/vars_appserver_instance.yaml
   vars:

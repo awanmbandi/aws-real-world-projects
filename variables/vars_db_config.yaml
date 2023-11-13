@@ -1,5 +1,5 @@
 # Playbook Configuration
-play_name : "Deploy Web Application"
+play_name : "Deploy Web Application and Configure App to DB Integration"
 target_host : all
 become_root : yes
 
