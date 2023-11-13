@@ -30,9 +30,14 @@
       user_data       : "{{ webapp_instance_user_data_script }}"
     register            : webapp
   
-  - name: "Instance ID"
+  - name: find all instances
     debug:
-      msg: "{{ ec2.instances.0.instance_id }}"
+        msg: 
+          - "==========================="
+          - "List of instances id"
+          - "==========================="
+          - '{{ server_info.instances | map(attribute="instance_id")|list}}'
+          - ""
 
   - name          : Associate Elastic IP
     ec2_eip:
