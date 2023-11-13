@@ -1,6 +1,6 @@
 ---
 - name: Provision AWS VPC and Network Resources
-  hosts: localhost
+  # hosts: localhost
   gather_facts: no
   vars:
     ansible_python_interpreter: /usr/bin/python3
