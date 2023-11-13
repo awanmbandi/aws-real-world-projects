@@ -1,0 +1,10 @@
+# Playbook Configuration
+play_name   : clone project repository
+target_host : all
+become_root : yes
+
+## Repository Configurations
+project_repository    : https://github.com/awanmbandi/aws-real-world-projects.git
+destination_clone_path: /home/ansibletower/ansible-tower-project/
+project_repo_branch   : ansible-tower-workflow-project
+

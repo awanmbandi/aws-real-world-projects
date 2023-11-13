@@ -1,0 +1,11 @@
+---
+- name: "{{ play_name }}"
+  hosts: "{{ target_host }}"
+  become: "{{ become_root }}" # Run commands with elevated privileges (e.g., sudo)
+  tasks:
+    - name: Clone Reposity In Tower Host and Checkout to Tower Project Branch
+      git:
+        repo      : "{{ project_repository }}"     # URL of your GitHub repository
+        dest      : "{{ destination_clone_path }}" # Local path where the repository will be cloned
+        version   : "{{ project_repo_branch }}"    # Specify the branch you want to checkout
+
