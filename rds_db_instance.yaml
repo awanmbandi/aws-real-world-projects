@@ -3,7 +3,6 @@
   hosts: "{{ hosts }}"
   connection: "{{ connection }}"
   gather_facts: "{{ gather_facts }}"
-  become: yes
   vars_files:
     - variables/vars_rds_db_instance.yaml
   vars:
