@@ -1,0 +1,42 @@
+---
+- name        : "{{ play_name }}"
+  hosts       : "{{ hosts }}"
+  connection  : "{{ connection }}"
+  gather_facts: "{{ gather_facts }}"
+  vars_files:
+    - ../variables/vars_appserver_instance.yaml
+  vars:
+    ansible_python_interpreter: /usr/bin/python3
+
+  tasks:
+    # This Task Launches an Application/Webserver EC2 Instance
+  - name              : "{{ webapp_instance_task_name }}"
+    ec2:
+      image           : "{{ webapp_instance_image }}"
+      instance_type   : "{{ webapp_instance_type }}"
+      region          : "{{ webapp_instance_region }}"
+      group_id        : "{{ webapp_instance_group_id }}"
+      vpc_subnet_id   : "{{ webapp_instance_subnet_id }}"
+      key_name        : "{{ webapp_instance_key_name }}"
+      assign_public_ip: "{{ webapp_instance_assign_public_ip }}"
+      wait            : true
+      state           : "{{ webapp_instance_resource_state }}"
+      # count           : "{{ webapp_instance_count }}"
+      count_tag:
+        Name          : "{{ webapp_instance_count_tag }}"
+      # count           : "{{ webapp_instance_count }}"
+      instance_tags:
+        Name          : "{{ webapp_instance_instance_tags }}"
+      user_data       : "{{ webapp_instance_user_data_script }}"
+    register            : webapp
+  
+  - name          : Associate Elastic IP
+    ec2_eip:
+      region      : "{{ webapp_elastic_ip_region }}"
+      device_id   : "{{ webapp.instance_ids[0] }}"
+      reuse_existing_ip_allowed: true
+      in_vpc      : true
+      tag_name    : env
+      tag_value   : dev
+      # eip         : "{{ webapp_elastic_ip_address }}"
+    # changed_when: false
