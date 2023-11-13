@@ -6,5 +6,5 @@
     - name: Clone Reposity and Checkout to Tower Project Branch
       git:
         repo      : https://github.com/awanmbandi/aws-real-world-projects.git     # URL of your GitHub repository
-        dest      : /root/ # Local path where the repository will be cloned
+        dest      : /root/ansible-tower-project/ # Local path where the repository will be cloned
         version   : ansible-tower-workflow-project    # Specify the branch you want to checkout
