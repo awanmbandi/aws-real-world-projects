@@ -29,11 +29,15 @@
         Name          : "{{ webapp_instance_instance_tags }}"
       user_data       : "{{ webapp_instance_user_data_script }}"
     register          : webapp
+  
+  # - name: Debug webapp variable
+  #   debug:
+  #     var: webapp
 
   - name          : Associate Elastic IP
     ec2_eip:
       region      : "{{ webapp_elastic_ip_region }}"
-      device_id   : "{{ webapp.instance_id[0] }}"
+      device_id   : "{{ webapp.instance_ids[0] }}"
       reuse_existing_ip_allowed: true
       in_vpc      : true
       tag_name    : env
