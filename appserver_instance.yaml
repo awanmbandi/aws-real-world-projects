@@ -20,6 +20,7 @@
       key_name        : "{{ webapp_instance_key_name }}"
       assign_public_ip: "{{ webapp_instance_assign_public_ip }}"
       wait            : true
+      # wait_timeout    : 
       state           : "{{ webapp_instance_resource_state }}"
       # count           : "{{ webapp_instance_count }}"
       count_tag:
