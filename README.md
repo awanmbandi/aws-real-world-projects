@@ -38,6 +38,11 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Unzip and Move/Copy Everything to The Repository You Cloned
 ![YourGitHubRepo](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%201.09.34%20PM.png)
 
+- Add the Changes, Commit and Push to GitHub
+![CommitPushGitHub](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%201.23.02%20PM.png)
+- Verify and Confirm that the Code is Available on GitHub
+![VerifyCodeAvailabilityGitHub](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%201.26.05%20PM.png)
+
 ## 2) Create Ansible Tower Project Resources
 
 
