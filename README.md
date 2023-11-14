@@ -43,6 +43,15 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Verify and Confirm that the Code is Available on GitHub
 ![VerifyCodeAvailabilityGitHub](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%201.26.05%20PM.png)
 
+## Create An Elastic IP Address In Your Working Region
+**NOTE: 1** *This IP will be used by the application server that will be Orchestrated by the `appserver_instance.yaml` automation playbook*
+**NOTE: 2** *This IP will also be used by Tower to Configure and Deploy the Web Application*
+![CreateElasticIP](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.23.41%20AM.png)
+![CreateElasticIP](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.29.51%20AM.png)
+
+- Confirm that you were assigned an Elastic IP Address
+![VerifyElasticIP](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.37.36%20AM.png)
+
 ## 2) Create Ansible Tower Project Resources
 
 
