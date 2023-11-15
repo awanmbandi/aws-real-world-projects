@@ -198,3 +198,7 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Edit the Database Configuration File and Provide Your Database Endpoint
 - RUN: `sudo vi /var/www/wordpress/wp-config.php`
 ![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-15%20at%2012.02.52%20AM.png)
+
+### 8) Once You're Done Making The Above Changes, Go Ahead And Test The Application Access Again
+- Make sure it's now able to connect with the Database
+![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-15%20at%2012.06.52%20AM.png)
