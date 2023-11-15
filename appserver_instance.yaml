@@ -51,6 +51,5 @@
       in_vpc      : true
       tag_name    : env
       tag_value   : dev
-      # eip         : "{{ webapp_elastic_ip_address }}"
     # changed_when: false
     when: existing_instance.instances | length == 0
