@@ -100,4 +100,75 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ### Confirm You Have The Following Job Templates Created
 ![AllJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.59.06%20PM.png)
 
+## 3) Create Project Workflow Job
+![CreateWorkflowTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.13.33%20PM.png)
+![CreateWorkflowTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.19.09%20PM.png)
+
+### 3.1) Add A Project Sync Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Project Sync`
+- Select the `tower-automation-workflow-project` project
+- `RUN` Select `Always`
+- `CONVERENCE` Select `Any`
+- Click on `SELECT`
+![IntegrateJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.30.18%20PM.png)
+
+### 3.2) Add The Database Provisioning Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Template`
+- Select the `database-instance-job-template` project
+- `RUN` Select `Always`
+- `CONVERENCE` Select `Any`
+- Click on `SELECT`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.36.03%20PM.png)
+
+### 3.3) Add The Application Server Provisioning Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Template`
+- Select the `application-deployment-job-template` project
+- `RUN` Select `Always`
+- `CONVERENCE` Select `Any`
+- Click on `SELECT`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.40.22%20PM.png)
+
+### 3.4) Add The Approval Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Approval`
+- Name: `Approve App Deployment`
+- Timeout: `30 Minutes`
+- Run: `On Success` 
+- Coverage: `Any`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.47.13%20PM.png)
+
+### 3.5) Add The Application Server Provisioning Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Template`
+- Select the `clone-project-repository-job-template` project
+- `RUN` Select `Always`
+- `COVERAGE` Select `Any`
+- Click on `SELECT`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.51.02%20PM.png)
+
+### 3.6) Add The Application Deployment Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Template`
+- Select the `application-deployment-job-template` project
+- `RUN` Select `Always`
+- `COVERAGE` Select `Any`
+- Click on `SELECT`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.55.32%20PM.png)
+
+### 3.7) Add The Application Deployment Stage
+- Click on `START`
+- Click on the Drop Down on the Right hand and select `Template`
+- Select the `configure-application-database-integration-job-template` project
+- `RUN` Select `Always`
+- `COVERAGE` Select `Any`
+- Click on `SELECT`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.02.03%20PM.png)
+
+### 3.8) Add The Application Deployment Stage
+- Click on `SAVE`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.03.23%20PM.png)
+
 
