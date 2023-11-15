@@ -1,0 +1,36 @@
+# Define variables for the Application/Webserver instance 
+# Playbook Configuration
+play_name   : "Wordpress Web Application Server Automation" 
+hosts       : "localhost"
+gather_facts: "False"
+connection  : "local"
+
+# Task Name for Identification
+webapp_instance_task_name       : "Wordpress Web Application Server"
+webapp_instance_image           : "ami-06aa3f7caf3a30282"  # Replace with the desired Amazon Machine Image (AMI)
+webapp_instance_type            : "t2.micro"        # Replace with the desired EC2 instance type
+webapp_instance_region          : "us-east-1"       # Replace with your desired region
+webapp_instance_group_id        : "sg-0eb1cb70958d9434c"
+webapp_instance_subnet_id       : "subnet-004b1bd45542395d6"  # Replace with your subnet ID
+webapp_instance_key_name        : "work_nova_key_newaccount"   # Replace with your key pair name
+webapp_instance_assign_public_ip: yes
+webapp_instance_wait_timeout    : 180
+webapp_instance_resource_state  : "present"
+webapp_instance_count_tag       : "WebAppServer"       # Replace with the instance count tag name
+#webapp_instance_count           : 1
+#webapp_instance_count           : 1                 # Replace with the desired number of instances to launch
+webapp_instance_instance_tags   : "WebAppServer"       # Replace with your instance tags
+webapp_instance_user_data_script: |
+                                  #!/bin/bash
+                                  sudo apt update -y
+                                  sudo su
+                                  useradd ansibletower -m
+                                  echo "ansibletower:ansibletower" | chpasswd 
+                                  sed -i 's/PasswordAuthentication no/PasswordAuthentication yes/g' /etc/ssh/sshd_config
+                                  systemctl restart sshd
+                                  echo "ansibletower ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+                                  apt install git -y
+
+## Elastic IP Task Variables/Values
+webapp_elastic_ip_region         : us-east-1
+webapp_elastic_ip_address        : 34.198.226.200
