@@ -16,14 +16,3 @@ sed -i "s/admin_password=''/admin_password='admin'/g" inventory
 sed -i "s/pg_password=''/pg_password='admin'/g" inventory
 sudo ./setup.sh
 
-
-
-# #sudo yum update -y
-# #sudo yum install epel-release -y 
-# #sudo yum install ansible vim curl -y 
-# #mkdir /tmp/tower && cd  /tmp/tower
-# #curl -k -O https://releases.ansible.com/ansible-tower/setup/ansible-tower-setup-latest.tar.gz
-# #tar xvf ansible-tower-setup-latest.tar.gz
-# #cd ansible-tower-setup*/
-# #vim inventory
-# #sudo ./setup.sh
