@@ -48,7 +48,7 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ### A) Create An Inventory
 - Navigate back to `Tower`, http:ANSIBLE_TOWER_IP
 ![CreateProjectInventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%206.48.56%20PM.png)
-![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%206.56.55%20PM.png)
+![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-15%20at%209.29.51%20AM.png)
 ![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.05.00%20PM.png)
 ![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.07.34%20PM.png)
 ![InvResult](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.12.25%20PM.png)
