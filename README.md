@@ -1,12 +1,4 @@
-### Install Boto
-pip3 install boto
-pip3 install boto3
-
-### Check Playbook Syntax
-ansible-playbook appserver_instance.yaml --syntax-check
-
-## Execute Playbook
-ansible-playbook appserver_instance.yaml -vvvv
+## Ansible Tower Workflow Template Project
 
 ## 1) Create And Setup Your Ansible Tower Environment
 - Ansible Tower Installation and Setup Runbook: https://scribehow.com/shared/Ansible_Tower_Setup_and_Configuration_Runbook_V2__uHuL7Z7eQCySip-xiK7ySA 
@@ -53,7 +45,36 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ![VerifyElasticIP](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.37.36%20AM.png)
 
 ## 2) Create Ansible Tower Project Resources
+### A) Create An Inventory
+- Navigate back to `Tower`, http:ANSIBLE_TOWER_IP
+![CreateProjectInventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%206.48.56%20PM.png)
+![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%206.56.55%20PM.png)
+![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.05.00%20PM.png)
+![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.07.34%20PM.png)
+![InvResult](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.12.25%20PM.png)
 
+### B) Create A Project
+- Click on `Projects`
+![CreateProject](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.15.14%20PM.png)
+![CreateProject](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.24.13%20PM.png)
+![CreateProject](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.27.02%20PM.png)
+
+### C) Generate API Keys (Access and Secret Keys) For Your AWS Environment
+- Identify a User with `EC2` and `RDS` Access or `AdministratorAccess` 
+- You can as well Create a New user if you do not have one and assign the required access
+- Generate `Access` and `Secret` Keys for we'll need this to Authorize Ansible Tower 
+
+### B) Create Credentials For Your AWS Environment and Appserver
+### B.1) Create AWS Credentials
+- Click on `Credentials`
+![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.31.05%20PM.png)
+- Provide all relevant values
+![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.43.37%20PM.png)
+
+### B.2) Create AWS Credentials
+![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.52.34%20PM.png)
+![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.57.39%20PM.png)
+![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.04.13%20PM.png)
 
 ### A) Create Your Tower Project Inventory
 
