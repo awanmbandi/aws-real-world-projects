@@ -174,3 +174,13 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ### 4) Start The Workflow Automation
 - Click on `Start` or `Launch`
 ![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.40.03%20PM.png)
+
+### 5) Approve Application Configurationa And Deployment
+- Click on `Alerts` and `APPROVE`
+- You also have the option to `DENY`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.17.44%20PM.png)
+![DatabaseJobs]()
+
+### 6) Confirm That Your Workflow Succeeded
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.23.48%20PM.png)
+
