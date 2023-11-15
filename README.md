@@ -1,6 +1,6 @@
 ## Ansible Tower Workflow Template Project
 
-## 1) Create And Setup Your Ansible Tower Environment
+### 1) Create And Setup Your Ansible Tower Environment
 - Ansible Tower Installation and Setup Runbook: https://scribehow.com/shared/Ansible_Tower_Setup_and_Configuration_Runbook_V2__uHuL7Z7eQCySip-xiK7ySA 
 
 ### B) Once You're Done Setting Up Tower and Login, The Dashboard Should Look Like This
