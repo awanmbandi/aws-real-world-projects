@@ -76,6 +76,24 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.57.39%20PM.png)
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.04.13%20PM.png)
 
-### A) Create Your Tower Project Inventory
+### D) Create Your Tower Project Job Templates 
+### D.1) Create The Database Job Template
+- Navigate to `Templates`
+- Click on the plus to create a `Job Template`
+![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.09.20%20PM.png)
+![JobTemplate]()
 
 
+### D.2) Create The Appserver Job Template
+
+
+
+### D.3) Create The Job Template To Clone The Project Repository
+
+
+
+### D.4) Create The Application Deployment Job Template
+
+
+
+### D.5) Create The Database Configuration and Integration Job Template
