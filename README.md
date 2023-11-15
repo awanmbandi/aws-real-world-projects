@@ -3,7 +3,7 @@
 ### 1) Create And Setup Your Ansible Tower Environment
 - Ansible Tower Installation and Setup Runbook: https://scribehow.com/shared/Ansible_Tower_Setup_and_Configuration_Runbook_V2__uHuL7Z7eQCySip-xiK7ySA 
 
-### B) Once You're Done Setting Up Tower and Login, The Dashboard Should Look Like This
+#### B) Once You're Done Setting Up Tower and Login, The Dashboard Should Look Like This
 ![AnsibleTowerDashboard](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.43.19%20AM.png)
 
 ## 2) Create a GitHub Project Repository
