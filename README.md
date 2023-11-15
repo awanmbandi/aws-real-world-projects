@@ -171,4 +171,6 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Click on `SAVE`
 ![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.03.23%20PM.png)
 
-
+### 4) Start The Workflow Automation
+- Click on `Start` or `Launch`
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.28.30%20PM.png)
