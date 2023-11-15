@@ -1,5 +1,5 @@
 ## Ansible Tower Workflow Template Project Arch
-![TowerWorkflowProjectArch](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/ansible_tower_automation_architecture_v4.png)
+![TowerWorkflowProjectArch](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/ansible_tower_automation_architecture_v5.png)
 
 ### 1) Create And Setup Your Ansible Tower Environment
 - Ansible Tower Installation and Setup Runbook: https://scribehow.com/shared/Ansible_Tower_Setup_and_Configuration_Runbook_V2__uHuL7Z7eQCySip-xiK7ySA 
