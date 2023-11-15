@@ -81,19 +81,23 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Navigate to `Templates`
 - Click on the plus to create a `Job Template`
 ![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.09.20%20PM.png)
-![JobTemplate]()
-
+![DatabaseJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.23.35%20PM.png)
 
 ### D.2) Create The Appserver Job Template
-
-
+![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.29.10%20PM.png)
+![AppserverJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.31.47%20PM.png)
 
 ### D.3) Create The Job Template To Clone The Project Repository
-
-
+![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.31.47%20PM.png)
+![CloneRepoJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.36.47%20PM.png)
 
 ### D.4) Create The Application Deployment Job Template
-
-
+![DeployAppTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.53.10%20PM.png)
 
 ### D.5) Create The Database Configuration and Integration Job Template
+![ConfigureDBJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.57.34%20PM.png)
+
+### Confirm You Have The Following Job Templates Created
+![AllJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.59.06%20PM.png)
+
+
