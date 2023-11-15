@@ -182,5 +182,6 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ![DatabaseJobs]()
 
 ### 6) Confirm That Your Workflow Succeeded
-![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.23.48%20PM.png)
+![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.27.29%20PM.png)
+
 
