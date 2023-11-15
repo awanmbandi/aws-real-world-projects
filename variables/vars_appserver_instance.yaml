@@ -32,5 +32,5 @@ webapp_instance_user_data_script: |
                                   apt install git -y
 
 ## Elastic IP Task Variables/Values
+# webapp_elastic_ip_address        : 34.198.226.200
 webapp_elastic_ip_region         : us-east-1
-webapp_elastic_ip_address        : 34.198.226.200
