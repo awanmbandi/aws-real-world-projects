@@ -184,4 +184,17 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ### 6) Confirm That Your Workflow Succeeded
 ![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.27.29%20PM.png)
 
+### 7) Access The Web Application Deployed In The Appserver Environment
+- Navigate to `EC2`
+- Select the `WebAppServer`, Copy the `Public IP` address and Paste on the `Browser`
+- **NOTE: 1** *Make sure you have port `80` open to the Internet* 
+- **NOTE: 1** *Also make sure you have port `3306` open to your `VPC Network`=`172.31.0.0/16`*
+![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.41.19%20PM.png)
 
+- Copy the RDS Database Endpoint
+![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.59.09%20PM.png)
+
+- Login to the Application Server
+- Edit the Database Configuration File and Provide Your Database Endpoint
+- RUN: `sudo vi /var/www/wordpress/wp-config.php`
+![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-15%20at%2012.02.52%20AM.png)
