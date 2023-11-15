@@ -47,14 +47,30 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ## 2) Create Ansible Tower Project Resources
 ### A) Create An Inventory
 - Navigate back to `Tower`, http:ANSIBLE_TOWER_IP
+- Click on `Inventory`
+    - Click on `Inventory`
+    - Name: `Appserver-Host`
+    - Organization: `Default`
+    - Click on `SAVE`
 ![CreateProjectInventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%206.48.56%20PM.png)
 ![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-15%20at%209.29.51%20AM.png)
+- Click on `HOST`
+    - Click on the `Plus(+)` to add an Inventory
+    - Host Name: `APPSERVER_ELASTIC_IP`
+    - Click on `SAVE`
 ![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.05.00%20PM.png)
 ![Inventory](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.07.34%20PM.png)
 ![InvResult](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.12.25%20PM.png)
 
 ### B) Create A Project
 - Click on `Projects`
+- Click on the `Plus(+)` to Create a Project
+    - Name: `tower-automation-workflow-project`
+    - Organization: `Default`
+    - SCM Type: Select `GIT`
+    - SCM URL: Provide your `GitHub project URL`
+    - SCM Updates Options: Select `Clean` and `Delete On Updates`
+    - Click `SAVE`
 ![CreateProject](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.15.14%20PM.png)
 ![CreateProject](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.24.13%20PM.png)
 ![CreateProject](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.27.02%20PM.png)
@@ -65,13 +81,27 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Generate `Access` and `Secret` Keys for we'll need this to Authorize Ansible Tower 
 
 ### B) Create Credentials For Your AWS Environment and Appserver
-### B.1) Create AWS Credentials
+### B.1) Create AWS Credential
 - Click on `Credentials`
+- Click on the `Plus(+)` to Create AWS Credential
+    - Name: `aws-environment-credential`
+    - Organization: Select `Default`
+    - Credential Type: Select `Amazon Web Services`
+    - Access Key: Provide your `Access Key`
+    - Secret Key: Provide your `Secret Key`
+    - Click on `SAVE`
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.31.05%20PM.png)
 - Provide all relevant values
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.43.37%20PM.png)
 
-### B.2) Create AWS Credentials
+### B.2) Create Appserver/Machine Credential
+- Click on the `Plus(+)` to Create AWS Credential
+    - Name: `appserver-machine-credential`
+    - Description: `appserver-machine-credential`
+    - Organization: Select `Default`
+    - Credential Type: Select `Machine`
+    - Username: `ansibletower`
+    - Password: `ansibletower`
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.52.34%20PM.png)
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%207.57.39%20PM.png)
 ![CreateCredential](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.04.13%20PM.png)
@@ -80,27 +110,76 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ### D.1) Create The Database Job Template
 - Navigate to `Templates`
 - Click on the plus to create a `Job Template`
+    - Name: `database-instance-job-template`
+    - Inventory: `Appserver-Host`
+    - Job Type: Select `RUN`
+    - Project: Select `tower-automation-workflow-project`
+    - Playbook: Select the `rds_db_instance.yaml`
+    - Credentials: Select your AWS Credential `aws-environment-credential`
+    - Verbosity: Select...
+    - Click on `SAVE`
 ![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.09.20%20PM.png)
 ![DatabaseJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.23.35%20PM.png)
 
 ### D.2) Create The Appserver Job Template
+- Click on the plus to create a `Job Template`
+    - Name: `appserver-instance-job-template`
+    - Inventory: `Appserver-Host`
+    - Job Type: Select `RUN`
+    - Project: Select `tower-automation-workflow-project`
+    - Playbook: Select the `appserver_instance.yaml`
+    - Credentials: Select your AWS Credential `aws-environment-credential`
+    - Verbosity: Select...
+    - Click on `SAVE`
 ![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.29.10%20PM.png)
 ![AppserverJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.31.47%20PM.png)
 
 ### D.3) Create The Job Template To Clone The Project Repository
-![JobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.31.47%20PM.png)
+- Click on the plus to create a `Job Template`
+    - Name: `clone-project-repository-job-template`
+    - Inventory: `Appserver-Host`
+    - Job Type: Select `RUN`
+    - Project: Select `tower-automation-workflow-project`
+    - Playbook: Select the `clone_project_repo.yaml`
+    - Credentials: Select your Machine Credential `appserver-machine-credential`
+    - Verbosity: Select...
+    - Click on `SAVE`
 ![CloneRepoJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.36.47%20PM.png)
 
 ### D.4) Create The Application Deployment Job Template
+- Click on the plus to create a `Job Template`
+    - Name: `application-deployment-job-template`
+    - Inventory: `Appserver-Host`
+    - Job Type: Select `RUN`
+    - Project: Select `tower-automation-workflow-project`
+    - Playbook: Select the `app_deployment_config.yaml`
+    - Credentials: Select your Machine Credential `appserver-machine-credential`
+    - Verbosity: Select...
+    - Click on `SAVE`
 ![DeployAppTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.53.10%20PM.png)
 
 ### D.5) Create The Database Configuration and Integration Job Template
+- Click on the plus to create a `Job Template`
+    - Name: `configure-application-database-integration-job-template`
+    - Inventory: `Appserver-Host`
+    - Job Type: Select `RUN`
+    - Project: Select `tower-automation-workflow-project`
+    - Playbook: Select the `app_db_config.yaml`
+    - Credentials: Select your Machine Credential `appserver-machine-credential`
+    - Verbosity: Select...
+    - Click on `SAVE`
 ![ConfigureDBJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.57.34%20PM.png)
 
 ### Confirm You Have The Following Job Templates Created
 ![AllJobTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%208.59.06%20PM.png)
 
 ## 3) Create Project Workflow Job
+- Click on `Templates`
+- Click on the plus to create a `Workflow Template`
+    - Name: `complete-project-workflow-automation`
+    - Default: Select `Default`
+    - Inventory; Select `Appserver-Host`
+    - Click on `SAVE`
 ![CreateWorkflowTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.13.33%20PM.png)
 ![CreateWorkflowTemplate](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%209.19.09%20PM.png)
 
@@ -172,6 +251,8 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 ![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.03.23%20PM.png)
 
 ### 4) Start The Workflow Automation
+- Click on `Templates`
+- Click on `complete-project-workflow-automation`
 - Click on `Start` or `Launch`
 ![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2010.40.03%20PM.png)
 
@@ -179,7 +260,7 @@ Once you setup your Ansible Tower environment. Follow below instructions to crea
 - Click on `Alerts` and `APPROVE`
 - You also have the option to `DENY`
 ![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.17.44%20PM.png)
-![DatabaseJobs]()
+![DatabaseJobs](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.23.48%20PM.png)
 
 ### 6) Confirm That Your Workflow Succeeded
 ![ConfirmWorkFlowSuccess](https://github.com/awanmbandi/aws-real-world-projects/blob/project-resources-docs/images/Screen%20Shot%202023-11-14%20at%2011.27.29%20PM.png)
