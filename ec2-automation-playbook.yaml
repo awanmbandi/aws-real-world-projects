@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  tasks:
+    # This Task Launches a Webserver EC2 Instance
+  - name: Provision an EC2 Webserver
+    ec2:
+      image: "{{ image }}"
+      instance_type: "{{ instance_type }}"
+      region: "{{ region }}"
+      group_id: "{{ group_id }}"
+      vpc_subnet_id: "{{ vpc_subnet_id }}"
+      key_name: "{{ key_name }}"
+      assign_public_ip: yes
+      count_tag:
+        Name: "{{ count_tag }}"
+      exact_count: "{{ exact_count }}"
+      instance_tags:
+        Name: "{{ instance_tags }}"
+

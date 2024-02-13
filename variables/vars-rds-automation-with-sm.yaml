@@ -1,0 +1,7 @@
+db_identifier        : testdatabase
+db_state             : present
+db_region            : us-east-1
+db_engine            : mysql
+db_instance_class    : "db.t2.small"
+db_allocated_storage : 20
+parameter_region     : us-east-1

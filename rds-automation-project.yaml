@@ -1,0 +1,20 @@
+---
+- hosts: localhost
+  connection: local
+  gather_facts: False
+  vars_files:
+    - variables/vars-rds-automation-with-sm.yaml
+
+  tasks:
+    - name                   : Create DB instance with added AWS KMS Encryption Enabled
+      rds_instance           :
+        id                   : "{{ db_identifier }}"
+        state                : "{{ db_state }}"
+        region               : "{{ db_region }}"
+        engine               : "{{ db_engine }}"
+        username             : "{{ lookup('aws_ssm', 'db_username', region='us-east-1') }}"
+        password             : "{{ lookup('aws_ssm', 'db_password', region='us-east-1') }}"
+        db_instance_class    : "{{ db_instance_class }}"
+        allocated_storage    : "{{ db_allocated_storage }}"
+        storage_encrypted    : true
+        skip_final_snapshot  : true
